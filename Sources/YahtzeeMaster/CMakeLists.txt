@@ -21,14 +21,25 @@ file(GLOB_RECURSE sources
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
 # Custom-build event
-set(yahtzee_master_header_gen_py ${root_dir}/Scripts/header_gen.py)
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+set(yathzee_master_header_gen_py ${root_dir}/Scripts/header_gen.py)
 add_custom_command(
-    COMMAND python ${yahtzee_master_header_gen_py}
+    COMMAND python ${yathzee_master_header_gen_py}
     DEPENDS ${headers}
     OUTPUT ${root_dir}/Includes/YahtzeeMaster.hpp
 )
-add_custom_target(yahtzee_master_header_gen_py ALL
+add_custom_target(yathzee_master_header_gen_py ALL
     DEPENDS ${root_dir}/Includes/YahtzeeMaster.hpp)
+else ()
+set(yathzee_master_header_gen_py ${root_dir}/Scripts/header_gen.py)
+add_custom_command(
+    COMMAND python3 ${yathzee_master_header_gen_py}
+    DEPENDS ${headers}
+    OUTPUT ${root_dir}/Includes/YahtzeeMaster.hpp
+)
+add_custom_target(yathzee_master_header_gen_py ALL
+    DEPENDS ${root_dir}/Includes/YahtzeeMaster.hpp)
+endif ()
 
 # Build library
 add_library(${target}
