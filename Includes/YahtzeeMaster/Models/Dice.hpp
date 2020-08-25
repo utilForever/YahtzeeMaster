@@ -20,6 +20,10 @@ namespace YahtzeeMaster
 class Dice
 {
  public:
+    //! Returns the value of the dice.
+    //! \return The value of the dice.
+    int GetValue() const;
+
     //! Rolls a dice.
     void Roll();
 

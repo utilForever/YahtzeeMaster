@@ -10,6 +10,11 @@
 
 namespace YahtzeeMaster
 {
+int Dice::GetValue() const
+{
+    return m_value;
+}
+
 void Dice::Roll()
 {
     using Random = effolkronium::random_static;
