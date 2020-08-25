@@ -21,5 +21,4 @@ void Dice::Roll()
 
     m_value = Random::get<int>(1, 6);
 }
-
 }  // namespace YahtzeeMaster
