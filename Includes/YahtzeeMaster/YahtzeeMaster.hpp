@@ -7,6 +7,7 @@
 #define YAHTZEE_MASTER_HPP
 
 #include <YahtzeeMaster/Models/Dice.hpp>
+#include <YahtzeeMaster/Models/Player.hpp>
 #include <YahtzeeMaster/YahtzeeMaster.hpp>
 
 #endif  // YAHTZEE_MASTER_HPP
