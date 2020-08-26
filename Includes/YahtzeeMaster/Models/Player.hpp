@@ -7,6 +7,7 @@
 #ifndef YAHTZEE_MASTER_PLAYER_HPP
 #define YAHTZEE_MASTER_PLAYER_HPP
 
+#include <YahtzeeMaster/Commons/Constants.hpp>
 #include <YahtzeeMaster/Models/Dice.hpp>
 
 #include <array>
@@ -23,13 +24,13 @@ class Player
  public:
     //! Returns a list of values of the dice.
     //! \return A list of values of the dice.
-    [[nodiscard]] std::array<int, 5> GetDiceValues() const;
+    [[nodiscard]] std::array<int, NUM_DICES> GetDiceValues() const;
 
     //! Rolls a list of dices.
     void RollDices();
 
  private:
-    std::array<Dice, 5> m_dices;
+    std::array<Dice, NUM_DICES> m_dices;
 };
 }  // namespace YahtzeeMaster
 

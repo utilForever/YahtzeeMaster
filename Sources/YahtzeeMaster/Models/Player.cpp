@@ -8,7 +8,7 @@
 
 namespace YahtzeeMaster
 {
-std::array<int, 5> Player::GetDiceValues() const
+std::array<int, NUM_DICES> Player::GetDiceValues() const
 {
     std::array<int, 5> ret{};
 

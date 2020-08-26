@@ -16,7 +16,7 @@ TEST_CASE("[Player] - RollDices")
 
     player.RollDices();
 
-    std::array<int, 5> values = player.GetDiceValues();
+    std::array<int, NUM_DICES> values = player.GetDiceValues();
     for (auto& value : values)
     {
         CHECK((value >= 1 && value <= 6));

@@ -18,7 +18,7 @@ TEST_CASE("[Game] - GetGameState")
     state.players.emplace_back(Player{});
     state.players[0].RollDices();
 
-    std::array<int, 5> values = state.players[0].GetDiceValues();
+    std::array<int, NUM_DICES> values = state.players[0].GetDiceValues();
     for (auto& value : values)
     {
         CHECK((value >= 1 && value <= 6));
