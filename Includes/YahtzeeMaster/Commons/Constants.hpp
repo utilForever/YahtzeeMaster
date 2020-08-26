@@ -11,6 +11,9 @@ namespace YahtzeeMaster
 {
 //! The number of dices.
 constexpr int NUM_DICES = 5;
+
+//! The number of categories.
+constexpr int NUM_CATEGORIES = 13;
 }  // namespace YahtzeeMaster
 
 #endif
