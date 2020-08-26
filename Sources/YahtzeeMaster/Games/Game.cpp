@@ -12,4 +12,13 @@ GameState& Game::GetGameState()
 {
     return m_gameState;
 }
+
+void Game::Start()
+{
+    // Initialize variables
+    for (int i = 0; i < m_gameState.numPlayers; ++i)
+    {
+        m_gameState.players.emplace_back(Player{});
+    }
+}
 }  // namespace YahtzeeMaster

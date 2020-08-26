@@ -29,6 +29,9 @@ class Game
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
 
+    //! Starts the game.
+    void Start();
+
  private:
     GameState m_gameState;
 };
