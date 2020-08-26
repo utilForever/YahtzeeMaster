@@ -11,6 +11,7 @@
 #include <YahtzeeMaster/Games/GameState.hpp>
 #include <YahtzeeMaster/Models/Dice.hpp>
 #include <YahtzeeMaster/Models/Player.hpp>
+#include <YahtzeeMaster/Models/ScoreCard.hpp>
 #include <YahtzeeMaster/YahtzeeMaster.hpp>
 
 #endif  // YAHTZEE_MASTER_HPP
