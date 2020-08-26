@@ -9,6 +9,7 @@
 
 #include <YahtzeeMaster/Commons/Constants.hpp>
 #include <YahtzeeMaster/Models/Dice.hpp>
+#include <YahtzeeMaster/Models/ScoreCard.hpp>
 
 #include <array>
 
@@ -31,6 +32,7 @@ class Player
 
  private:
     std::array<Dice, NUM_DICES> m_dices;
+    ScoreCard m_scoreCard;
 };
 }  // namespace YahtzeeMaster
 
