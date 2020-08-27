@@ -20,7 +20,6 @@ namespace YahtzeeMaster
 //!
 struct GameState
 {
-    int numPlayers = 0;
     std::vector<Player> players;
 };
 }  // namespace YahtzeeMaster
