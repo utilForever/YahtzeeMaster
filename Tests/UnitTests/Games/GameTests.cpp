@@ -10,6 +10,18 @@
 
 using namespace YahtzeeMaster;
 
+TEST_CASE("[Game] - GetGameState")
+{
+    GameConfig config;
+    config.numPlayers = 2;
+
+    Game game{ config };
+    game.Start();
+
+    GameState& gameState = game.GetGameState();
+    CHECK_EQ(gameState.curPlayerIdx, 0);
+}
+
 TEST_CASE("[Game] - RollDices")
 {
     GameConfig config;
