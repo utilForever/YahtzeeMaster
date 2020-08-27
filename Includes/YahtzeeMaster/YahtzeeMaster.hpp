@@ -8,6 +8,7 @@
 
 #include <YahtzeeMaster/Commons/Constants.hpp>
 #include <YahtzeeMaster/Games/Game.hpp>
+#include <YahtzeeMaster/Games/GameConfig.hpp>
 #include <YahtzeeMaster/Games/GameState.hpp>
 #include <YahtzeeMaster/Models/Dice.hpp>
 #include <YahtzeeMaster/Models/Player.hpp>
