@@ -12,6 +12,7 @@
 #include <YahtzeeMaster/Models/ScoreCard.hpp>
 
 #include <array>
+#include <initializer_list>
 
 namespace YahtzeeMaster
 {
@@ -31,7 +32,8 @@ class Player
     [[nodiscard]] std::array<int, NUM_DICES> GetDiceValues() const;
 
     //! Rolls a list of dices.
-    void RollDices();
+    //! \param diceIndices A list of indices of dice to roll.
+    void RollDices(std::initializer_list<std::size_t> diceIndices = { 0, 1, 2, 3, 4 });
 
  private:
     std::array<Dice, NUM_DICES> m_dices;

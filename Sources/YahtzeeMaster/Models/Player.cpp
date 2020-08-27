@@ -25,11 +25,11 @@ std::array<int, NUM_DICES> Player::GetDiceValues() const
     return ret;
 }
 
-void Player::RollDices()
+void Player::RollDices(std::initializer_list<std::size_t> diceIndices)
 {
-    for (auto& dice : m_dices)
+    for (const std::size_t& diceIndex : diceIndices)
     {
-        dice.Roll();
+        m_dices[diceIndex].Roll();
     }
 
     ++m_numReroll;
