@@ -10,9 +10,13 @@
 
 using namespace YahtzeeMaster;
 
-TEST_CASE("[Game] - GetGameState")
+TEST_CASE("[Game] - Basic")
 {
-    Game game;
+    GameConfig config;
+    config.numPlayers = 2;
+
+    Game game{ config };
+
     GameState& state = game.GetGameState();
 
     state.players.emplace_back(Player{});
