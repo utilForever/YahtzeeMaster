@@ -27,6 +27,11 @@ std::array<int, NUM_DICES> Player::GetDiceValues() const
 
 void Player::RollDices(std::initializer_list<std::size_t> diceIndices)
 {
+    if (m_numReroll == NUM_REROLLS)
+    {
+        return;
+    }
+
     for (const std::size_t& diceIndex : diceIndices)
     {
         m_dices[diceIndex].Roll();
