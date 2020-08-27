@@ -34,6 +34,10 @@ class Game
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
 
+    //! Gets the current player.
+    //! \return The current player.
+    [[nodiscard]] Player& GetCurrentPlayer();
+
     //! Starts the game.
     void Start();
 

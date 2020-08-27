@@ -18,6 +18,11 @@ GameState& Game::GetGameState()
     return m_gameState;
 }
 
+Player& Game::GetCurrentPlayer()
+{
+    return m_gameState.players[m_gameState.curPlayerIdx];
+}
+
 void Game::Start()
 {
     // Initialize variables
