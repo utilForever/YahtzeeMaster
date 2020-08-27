@@ -25,6 +25,10 @@ namespace YahtzeeMaster
 class Game
 {
  public:
+    //! Constructs game with given \p config.
+    //! \param config The game config holds all configuration values.
+    explicit Game(const GameConfig& config);
+
     //! Gets the game state.
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
@@ -33,6 +37,7 @@ class Game
     void Start();
 
  private:
+    GameConfig m_config;
     GameState m_gameState;
 };
 }  // namespace YahtzeeMaster

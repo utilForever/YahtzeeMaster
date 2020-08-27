@@ -8,6 +8,11 @@
 
 namespace YahtzeeMaster
 {
+Game::Game(const GameConfig& config) : m_config(config)
+{
+    // Do nothing
+}
+
 GameState& Game::GetGameState()
 {
     return m_gameState;
@@ -16,7 +21,7 @@ GameState& Game::GetGameState()
 void Game::Start()
 {
     // Initialize variables
-    for (int i = 0; i < m_gameState.numPlayers; ++i)
+    for (int i = 0; i < m_config.numPlayers; ++i)
     {
         m_gameState.players.emplace_back(Player{});
     }
