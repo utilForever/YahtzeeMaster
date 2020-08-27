@@ -10,7 +10,7 @@ namespace YahtzeeMaster
 {
 Game::Game(const GameConfig& config) : m_config(config)
 {
-    // Do nothing
+    m_gameState.players.reserve(config.numPlayers);
 }
 
 GameState& Game::GetGameState()
