@@ -25,5 +25,8 @@ void Game::Start()
     {
         m_gameState.players.emplace_back(Player{});
     }
+
+    // Set the index of the current player
+    m_gameState.curPlayerIdx = 0;
 }
 }  // namespace YahtzeeMaster
