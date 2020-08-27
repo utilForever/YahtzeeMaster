@@ -5,6 +5,7 @@
 // property of any third parties.
 
 #include <YahtzeeMaster/Games/Game.hpp>
+#include <YahtzeeMaster/Games/GameManager.hpp>
 
 namespace YahtzeeMaster
 {
@@ -33,5 +34,9 @@ void Game::Start()
 
     // Set the index of the current player
     m_gameState.curPlayerIdx = 0;
+
+    // Set next step
+    nextStep = Step::PLAY_ROUND;
+    GameManager::ProcessNextStep(*this, nextStep);
 }
 }  // namespace YahtzeeMaster

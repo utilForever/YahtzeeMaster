@@ -7,6 +7,7 @@
 #ifndef YAHTZEE_MASTER_GAME_HPP
 #define YAHTZEE_MASTER_GAME_HPP
 
+#include <YahtzeeMaster/Enums/GameEnums.hpp>
 #include <YahtzeeMaster/Games/GameConfig.hpp>
 #include <YahtzeeMaster/Games/GameState.hpp>
 
@@ -40,6 +41,9 @@ class Game
 
     //! Starts the game.
     void Start();
+
+    Step step = Step::INVALID;
+    Step nextStep = Step::INVALID;
 
  private:
     GameConfig m_config;
