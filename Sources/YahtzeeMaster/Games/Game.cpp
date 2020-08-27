@@ -39,4 +39,10 @@ void Game::Start()
     nextStep = Step::PLAY_ROUND;
     GameManager::ProcessNextStep(*this, nextStep);
 }
+
+void Game::PlayRound()
+{
+    // Initialize the current player
+    GetCurrentPlayer().Initialize();
+}
 }  // namespace YahtzeeMaster

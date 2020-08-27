@@ -42,6 +42,9 @@ class Game
     //! Starts the game.
     void Start();
 
+    //! Plays round for each player.
+    void PlayRound();
+
     Step step = Step::INVALID;
     Step nextStep = Step::INVALID;
 
