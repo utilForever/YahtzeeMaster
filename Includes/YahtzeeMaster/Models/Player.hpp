@@ -23,6 +23,9 @@ namespace YahtzeeMaster
 class Player
 {
  public:
+    //! Initializes player to play each round.
+    void Initialize();
+
     //! Returns a list of values of the dice.
     //! \return A list of values of the dice.
     [[nodiscard]] std::array<int, NUM_DICES> GetDiceValues() const;
@@ -32,6 +35,8 @@ class Player
 
  private:
     std::array<Dice, NUM_DICES> m_dices;
+    int m_numReroll = 0;
+
     ScoreCard m_scoreCard;
 };
 }  // namespace YahtzeeMaster

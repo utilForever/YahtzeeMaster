@@ -8,6 +8,11 @@
 
 namespace YahtzeeMaster
 {
+void Player::Initialize()
+{
+    m_numReroll = 0;
+}
+
 std::array<int, NUM_DICES> Player::GetDiceValues() const
 {
     std::array<int, 5> ret{};
@@ -26,5 +31,7 @@ void Player::RollDices()
     {
         dice.Roll();
     }
+
+    ++m_numReroll;
 }
 }  // namespace YahtzeeMaster
