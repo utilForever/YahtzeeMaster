@@ -7,6 +7,7 @@
 #ifndef YAHTZEE_MASTER_GAME_HPP
 #define YAHTZEE_MASTER_GAME_HPP
 
+#include <YahtzeeMaster/Games/GameConfig.hpp>
 #include <YahtzeeMaster/Games/GameState.hpp>
 
 namespace YahtzeeMaster
