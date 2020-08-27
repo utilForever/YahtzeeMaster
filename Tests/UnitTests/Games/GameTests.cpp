@@ -10,40 +10,39 @@
 
 using namespace YahtzeeMaster;
 
-TEST_CASE("[Game] - Basic")
+TEST_CASE("[Game] - RollDices")
 {
     GameConfig config;
     config.numPlayers = 2;
 
     Game game{ config };
+    game.Start();
 
-    GameState& state = game.GetGameState();
+    Player& curPlayer = game.GetCurrentPlayer();
+    curPlayer.RollDices();
 
-    state.players.emplace_back(Player{});
-    state.players[0].RollDices();
-
-    std::array<int, NUM_DICES> values1 = state.players[0].GetDiceValues();
+    std::array<int, NUM_DICES> values1 = curPlayer.GetDiceValues();
     for (auto& value : values1)
     {
         CHECK((value >= 1 && value <= 6));
     }
 
-    state.players[0].RollDices({ 0, 1, 3 });
+    curPlayer.RollDices({ 0, 1, 3 });
 
-    std::array<int, NUM_DICES> values2 = state.players[0].GetDiceValues();
+    std::array<int, NUM_DICES> values2 = curPlayer.GetDiceValues();
     CHECK_EQ(values1[2], values2[2]);
     CHECK_EQ(values1[4], values2[4]);
 
-    state.players[0].RollDices({ 2, 3 });
+    curPlayer.RollDices({ 2, 3 });
 
-    std::array<int, NUM_DICES> values3 = state.players[0].GetDiceValues();
+    std::array<int, NUM_DICES> values3 = curPlayer.GetDiceValues();
     CHECK_EQ(values2[0], values3[0]);
     CHECK_EQ(values2[1], values3[1]);
     CHECK_EQ(values2[4], values3[4]);
 
-    state.players[0].RollDices();
+    curPlayer.RollDices();
 
-    std::array<int, NUM_DICES> values4 = state.players[0].GetDiceValues();
+    std::array<int, NUM_DICES> values4 = curPlayer.GetDiceValues();
     for (std::size_t i = 0; i < static_cast<std::size_t>(NUM_DICES); ++i)
     {
         CHECK_EQ(values3[i], values4[i]);
