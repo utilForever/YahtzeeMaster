@@ -21,7 +21,7 @@ GameState& Game::GetGameState()
 void Game::Start()
 {
     // Initialize variables
-    for (int i = 0; i < m_config.numPlayers; ++i)
+    for (std::size_t i = 0; i < m_config.numPlayers; ++i)
     {
         m_gameState.players.emplace_back(Player{});
     }

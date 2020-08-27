@@ -7,6 +7,8 @@
 #ifndef YAHTZEE_MASTER_GAME_CONFIG_HPP
 #define YAHTZEE_MASTER_GAME_CONFIG_HPP
 
+#include <cstddef>
+
 namespace YahtzeeMaster
 {
 //!
@@ -16,7 +18,7 @@ namespace YahtzeeMaster
 //!
 struct GameConfig
 {
-    int numPlayers = 0;
+    std::size_t numPlayers = 0;
 };
 }  // namespace YahtzeeMaster
 
