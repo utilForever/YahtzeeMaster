@@ -7,6 +7,7 @@
 #define YAHTZEE_MASTER_HPP
 
 #include <YahtzeeMaster/Commons/Constants.hpp>
+#include <YahtzeeMaster/Enums/GameEnums.hpp>
 #include <YahtzeeMaster/Games/Game.hpp>
 #include <YahtzeeMaster/Games/GameConfig.hpp>
 #include <YahtzeeMaster/Games/GameState.hpp>
