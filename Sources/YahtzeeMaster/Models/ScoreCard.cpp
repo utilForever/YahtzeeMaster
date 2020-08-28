@@ -28,4 +28,12 @@ bool ScoreCard::IsFourOfAKind(const std::array<int, NUM_DICES>& diceValues)
            (diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3] &&
             diceValues[3] == diceValues[4]);
 }
+
+bool ScoreCard::IsFullHouse(const std::array<int, NUM_DICES>& diceValues)
+{
+    return (diceValues[0] == diceValues[1] && diceValues[2] == diceValues[3] &&
+            diceValues[3] == diceValues[4]) ||
+           (diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] &&
+            diceValues[3] == diceValues[4]);
+}
 }  // namespace YahtzeeMaster

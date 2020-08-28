@@ -43,6 +43,11 @@ class ScoreCard
     //! \return true if a list of dices satisfies the condition, false otherwise.
     static bool IsFourOfAKind(const std::array<int, NUM_DICES>& diceValues);
 
+    //! Checks that a list of dices satisfies "Full House" condition.
+    //! \param diceValues A list of values of the dice.
+    //! \return true if a list of dices satisfies the condition, false otherwise.
+    static bool IsFullHouse(const std::array<int, NUM_DICES>& diceValues);
+
  private:
     std::array<int, NUM_CATEGORIES> m_scores{};
     std::array<bool, NUM_CATEGORIES> m_scoreMarks{};
