@@ -24,6 +24,10 @@ class Dice
     //! \return The value of the dice.
     [[nodiscard]] int GetValue() const;
 
+    //! Sets the value of the dice (for testing purposes).
+    //! \param value The value of the dice.
+    void SetValue(int value);
+
     //! Rolls a dice.
     void Roll();
 

@@ -15,6 +15,11 @@ int Dice::GetValue() const
     return m_value;
 }
 
+void Dice::SetValue(int value)
+{
+    m_value = value;
+}
+
 void Dice::Roll()
 {
     using Random = effolkronium::random_static;
