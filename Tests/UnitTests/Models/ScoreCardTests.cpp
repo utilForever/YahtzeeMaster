@@ -27,3 +27,12 @@ TEST_CASE("[ScoreCard] - FourOfAKind")
     CHECK_EQ(ScoreCard::IsFourOfAKind(diceValues1), false);
     CHECK_EQ(ScoreCard::IsFourOfAKind(diceValues2), true);
 }
+
+TEST_CASE("[ScoreCard] - FullHouse")
+{
+    const std::array<int, NUM_DICES> diceValues1{ 2, 4, 4, 4, 5 };
+    const std::array<int, NUM_DICES> diceValues2{ 2, 2, 4, 4, 4 };
+
+    CHECK_EQ(ScoreCard::IsFullHouse(diceValues1), false);
+    CHECK_EQ(ScoreCard::IsFullHouse(diceValues2), true);
+}
