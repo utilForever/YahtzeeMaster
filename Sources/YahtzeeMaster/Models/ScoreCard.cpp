@@ -13,4 +13,11 @@ ScoreCard::ScoreCard()
     m_scores.fill(0);
     m_scoreMarks.fill(false);
 }
+
+bool ScoreCard::IsThreeOfAKind(const std::array<int, NUM_DICES>& diceValues)
+{
+    return (diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]) ||
+           (diceValues[1] == diceValues[2] && diceValues[2] == diceValues[3]) ||
+           (diceValues[2] == diceValues[3] && diceValues[3] == diceValues[4]);
+}
 }  // namespace YahtzeeMaster
