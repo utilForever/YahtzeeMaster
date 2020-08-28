@@ -25,6 +25,17 @@ std::array<int, NUM_DICES> Player::GetDiceValues() const
     return ret;
 }
 
+void Player::SetDiceValues(std::initializer_list<int> diceValues)
+{
+    std::size_t i = 0;
+
+    for (const int& diceValue : diceValues)
+    {
+        m_dices[i].SetValue(diceValue);
+        ++i;
+    }
+}
+
 void Player::RollDices(std::initializer_list<std::size_t> diceIndices)
 {
     if (m_numReroll == NUM_REROLLS)

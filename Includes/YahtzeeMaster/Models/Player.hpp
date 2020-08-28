@@ -31,6 +31,10 @@ class Player
     //! \return A list of values of the dice.
     [[nodiscard]] std::array<int, NUM_DICES> GetDiceValues() const;
 
+    //! Sets a list of values of the dice (for testing purposes).
+    //! \param diceValues A list of values of the dice to set.
+    void SetDiceValues(std::initializer_list<int> diceValues);
+
     //! Rolls a list of dices.
     //! \param diceIndices A list of indices of dice to roll.
     void RollDices(std::initializer_list<std::size_t> diceIndices = { 0, 1, 2, 3, 4 });
