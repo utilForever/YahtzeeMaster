@@ -7,6 +7,8 @@
 #include <YahtzeeMaster/Games/Game.hpp>
 #include <YahtzeeMaster/Games/GameManager.hpp>
 
+#include <algorithm>
+
 namespace YahtzeeMaster
 {
 Game::Game(const GameConfig& config) : m_config(config)
@@ -65,5 +67,28 @@ void Game::PlayRound()
 {
     // Initialize the current player
     GetCurrentPlayer().Initialize();
+}
+
+void Game::CalculateResult()
+{
+    std::vector<int> scores;
+    scores.reserve(m_gameState.players.size());
+
+    // Collect total scores
+    for (std::size_t i = 0; i < m_config.numPlayers; ++i)
+    {
+        scores.emplace_back(m_gameState.players[i].GetScoreCard().GetTotalScore());
+    }
+
+    // Find the maximum value of total scores
+    const auto result = std::max_element(scores.begin(), scores.end());
+    const std::size_t idx = std::distance(scores.begin(), result);
+
+    // Set the result
+    for (std::size_t i = 0; i < m_config.numPlayers; ++i)
+    {
+        m_gameState.players[i].result =
+            (scores[i] == scores[idx]) ? Result::WON : Result::LOST;
+    }
 }
 }  // namespace YahtzeeMaster

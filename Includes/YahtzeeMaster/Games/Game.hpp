@@ -45,6 +45,9 @@ class Game
     //! Plays round for each player.
     void PlayRound();
 
+    //! Calculates the result.
+    void CalculateResult();
+
     Step step = Step::INVALID;
     Step nextStep = Step::INVALID;
 
