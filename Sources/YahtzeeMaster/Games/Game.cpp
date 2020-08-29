@@ -26,10 +26,30 @@ Player& Game::GetCurrentPlayer()
 
 void Game::Start()
 {
+    // Create callback to process the next player
+    auto processNextPlayerCallback = [this]() {
+        // Increase the index of the current player
+        m_gameState.curPlayerIdx =
+            ++m_gameState.curPlayerIdx % m_gameState.players.size();
+
+        if (m_gameState.curPlayerIdx == 0)
+        {
+            ++m_gameState.curRound;
+        }
+
+        if (m_gameState.curRound > NUM_CATEGORIES)
+        {
+            // Set next step
+            nextStep = Step::COMPLETE;
+            GameManager::ProcessNextStep(*this, nextStep);
+        }
+    };
+
     // Initialize player related variables
     for (std::size_t i = 0; i < m_config.numPlayers; ++i)
     {
         m_gameState.players.emplace_back(Player{});
+        m_gameState.players[i].processNextPlayerCallback = processNextPlayerCallback;
     }
 
     // Initialize game related variables
