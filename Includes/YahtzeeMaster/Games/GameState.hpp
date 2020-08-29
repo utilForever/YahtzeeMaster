@@ -22,6 +22,7 @@ struct GameState
 {
     std::vector<Player> players;
     std::size_t curPlayerIdx = 0;
+    std::size_t curRound = 0;
 };
 }  // namespace YahtzeeMaster
 

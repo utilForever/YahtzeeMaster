@@ -26,14 +26,15 @@ Player& Game::GetCurrentPlayer()
 
 void Game::Start()
 {
-    // Initialize variables
+    // Initialize player related variables
     for (std::size_t i = 0; i < m_config.numPlayers; ++i)
     {
         m_gameState.players.emplace_back(Player{});
     }
 
-    // Set the index of the current player
+    // Initialize game related variables
     m_gameState.curPlayerIdx = 0;
+    m_gameState.curRound = 1;
 
     // Set next step
     nextStep = Step::PLAY_ROUND;
