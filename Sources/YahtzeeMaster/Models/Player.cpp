@@ -101,6 +101,10 @@ void Player::CalculateScores()
 
 void Player::FillScoreCard(Category category)
 {
-    m_scoreCard.FillScore(category, m_scores[category]);
+    const bool isFillSuccess = m_scoreCard.FillScore(category, m_scores[category]);
+    if (isFillSuccess)
+    {
+        processNextPlayerCallback();
+    }
 }
 }  // namespace YahtzeeMaster
