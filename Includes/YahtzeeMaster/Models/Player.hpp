@@ -39,11 +39,16 @@ class Player
     //! \param diceIndices A list of indices of dice to roll.
     void RollDices(std::initializer_list<std::size_t> diceIndices = { 0, 1, 2, 3, 4 });
 
- private:
-    std::array<Dice, NUM_DICES> m_dices;
-    int m_numReroll = 0;
+    //! Calculates a list of scores according to the value of dices.
+    void CalculateScores();
 
+ private:
     ScoreCard m_scoreCard;
+
+    std::array<Dice, NUM_DICES> m_dices;
+    std::array<int, NUM_CATEGORIES> m_scores{};
+
+    int m_numReroll = 0;
 };
 }  // namespace YahtzeeMaster
 
