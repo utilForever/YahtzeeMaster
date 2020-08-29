@@ -60,3 +60,23 @@ TEST_CASE("[Game] - RollDices")
         CHECK_EQ(values3[i], values4[i]);
     }
 }
+
+TEST_CASE("[Game] - Basic")
+{
+    GameConfig config;
+    config.numPlayers = 2;
+
+    Game game{ config };
+    game.Start();
+
+    for (std::size_t i = 0; i < config.numPlayers * NUM_CATEGORIES; ++i)
+    {
+        game.GetCurrentPlayer().RollDices();
+        game.GetCurrentPlayer().FillScoreCard(static_cast<Category>(i / 2));
+    }
+
+    CHECK((game.GetGameState().players[0].result == Result::WON ||
+           game.GetGameState().players[0].result == Result::LOST));
+    CHECK((game.GetGameState().players[1].result == Result::WON ||
+           game.GetGameState().players[1].result == Result::LOST));
+}
