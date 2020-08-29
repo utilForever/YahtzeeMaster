@@ -53,6 +53,11 @@ class ScoreCard
     //! \return true if a list of dices satisfies the condition, false otherwise.
     static bool IsSmallStraight(const std::array<int, NUM_DICES>& diceValues);
 
+    //! Checks that a list of dices satisfies "Large Straight" condition.
+    //! \param diceValues A list of values of the dice.
+    //! \return true if a list of dices satisfies the condition, false otherwise.
+    static bool IsLargeStraight(const std::array<int, NUM_DICES>& diceValues);
+
  private:
     std::array<int, NUM_CATEGORIES> m_scores{};
     std::array<bool, NUM_CATEGORIES> m_scoreMarks{};

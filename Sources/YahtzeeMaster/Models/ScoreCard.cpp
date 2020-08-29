@@ -47,4 +47,10 @@ bool ScoreCard::IsSmallStraight(const std::array<int, NUM_DICES>& diceValues)
     return (values[0] + 1 == values[1] && values[1] + 1 == values[2] &&
             values[2] + 1 == values[3]);
 }
+
+bool ScoreCard::IsLargeStraight(const std::array<int, NUM_DICES>& diceValues)
+{
+    return (diceValues[0] + 1 == diceValues[1] && diceValues[1] + 1 == diceValues[2] &&
+            diceValues[2] + 1 == diceValues[3] && diceValues[3] + 1 == diceValues[4]);
+}
 }  // namespace YahtzeeMaster
