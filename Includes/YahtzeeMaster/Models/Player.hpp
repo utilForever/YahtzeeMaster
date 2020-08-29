@@ -33,7 +33,7 @@ class Player
 
     //! Returns a list of scores according to the value of dices.
     //! \return A list of scores according to the value of dices.
-    std::array<int, NUM_CATEGORIES> GetScores() const;
+    [[nodiscard]] std::array<int, NUM_CATEGORIES> GetScores() const;
 
     //! Sets a list of values of the dice (for testing purposes).
     //! \param diceValues A list of values of the dice to set.
