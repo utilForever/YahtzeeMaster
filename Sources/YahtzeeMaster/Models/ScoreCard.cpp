@@ -7,6 +7,7 @@
 #include <YahtzeeMaster/Models/ScoreCard.hpp>
 
 #include <algorithm>
+#include <numeric>
 
 namespace YahtzeeMaster
 {
@@ -27,6 +28,18 @@ bool ScoreCard::FillScore(Category category, int score)
     m_scoreMarks[category] = true;
 
     return true;
+}
+
+int ScoreCard::GetTotalScore() const
+{
+    const int bonus = (m_scores[Category::ACES] + m_scores[Category::TWOS] +
+                       m_scores[Category::THREES] + m_scores[Category::FOURS] +
+                       m_scores[Category::FIVES] + m_scores[Category::SIXES]) >=
+                              UPPER_SECTION_BONUS_CONDITION
+                          ? UPPER_SECTION_BONUS
+                          : 0;
+
+    return std::accumulate(m_scores.begin(), m_scores.end(), 0) + bonus;
 }
 
 bool ScoreCard::IsThreeOfAKind(const std::array<int, NUM_DICES>& diceValues)

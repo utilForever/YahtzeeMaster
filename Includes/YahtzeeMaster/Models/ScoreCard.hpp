@@ -40,6 +40,10 @@ class ScoreCard
     //! \return true if a score is filled successfully, false otherwise.
     bool FillScore(Category category, int score);
 
+    //! Returns the total score.
+    //! \return The total score.
+    [[nodiscard]] int GetTotalScore() const;
+
     //! Checks that a list of dices satisfies "Three Of A Kind" condition.
     //! \param diceValues A list of values of the dice.
     //! \return true if a list of dices satisfies the condition, false otherwise.
