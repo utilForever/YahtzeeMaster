@@ -28,6 +28,10 @@ class Player
     //! Initializes player to play each round.
     void Initialize();
 
+    //! Returns the score card.
+    //! \return The score card.
+    [[nodiscard]] const ScoreCard& GetScoreCard() const;
+
     //! Returns a list of values of the dice.
     //! \return A list of values of the dice.
     [[nodiscard]] std::array<int, NUM_DICES> GetDiceValues() const;

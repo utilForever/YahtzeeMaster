@@ -17,6 +17,11 @@ void Player::Initialize()
     m_numReroll = 0;
 }
 
+const ScoreCard& Player::GetScoreCard() const
+{
+    return m_scoreCard;
+}
+
 std::array<int, NUM_DICES> Player::GetDiceValues() const
 {
     std::array<int, 5> ret{};
