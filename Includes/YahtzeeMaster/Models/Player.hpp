@@ -12,6 +12,7 @@
 #include <YahtzeeMaster/Models/ScoreCard.hpp>
 
 #include <array>
+#include <functional>
 #include <initializer_list>
 
 namespace YahtzeeMaster
@@ -49,6 +50,8 @@ class Player
     //! Fills a score to the score card.
     //! \param category The category to fill a score.
     void FillScoreCard(Category category);
+
+    std::function<void()> processNextPlayerCallback;
 
  private:
     ScoreCard m_scoreCard;
