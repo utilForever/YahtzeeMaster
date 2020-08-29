@@ -29,6 +29,11 @@ std::array<int, NUM_DICES> Player::GetDiceValues() const
     return ret;
 }
 
+std::array<int, NUM_CATEGORIES> Player::GetScores() const
+{
+    return m_scores;
+}
+
 void Player::SetDiceValues(std::initializer_list<int> diceValues)
 {
     std::size_t i = 0;
