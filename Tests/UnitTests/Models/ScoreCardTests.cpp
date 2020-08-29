@@ -54,3 +54,12 @@ TEST_CASE("[ScoreCard] - LargeStraight")
     CHECK_EQ(ScoreCard::IsLargeStraight(diceValues1), false);
     CHECK_EQ(ScoreCard::IsLargeStraight(diceValues2), true);
 }
+
+TEST_CASE("[ScoreCard] - Yahtzee")
+{
+    const std::array<int, NUM_DICES> diceValues1{ 3, 4, 4, 4, 4 };
+    const std::array<int, NUM_DICES> diceValues2{ 4, 4, 4, 4, 4 };
+
+    CHECK_EQ(ScoreCard::IsYahtzee(diceValues1), false);
+    CHECK_EQ(ScoreCard::IsYahtzee(diceValues2), true);
+}
