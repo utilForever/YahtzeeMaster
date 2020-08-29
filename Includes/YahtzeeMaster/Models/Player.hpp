@@ -57,6 +57,8 @@ class Player
 
     std::function<void()> processNextPlayerCallback;
 
+    Result result = Result::INVALID;
+
  private:
     ScoreCard m_scoreCard;
 
