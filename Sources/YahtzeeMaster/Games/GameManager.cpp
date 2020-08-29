@@ -12,14 +12,15 @@ void GameManager::ProcessNextStep(Game& game, Step step)
 {
     switch (step)
     {
+        case Step::INVALID:
+            break;
         case Step::PLAY_ROUND:
             game.step = step;
             game.PlayRound();
             break;
         case Step::COMPLETE:
             game.step = step;
-            break;
-        default:
+            game.CalculateResult();
             break;
     }
 }
