@@ -8,6 +8,7 @@
 #define YAHTZEE_MASTER_SCORE_CARD_HPP
 
 #include <YahtzeeMaster/Commons/Constants.hpp>
+#include <YahtzeeMaster/Enums/GameEnums.hpp>
 
 #include <array>
 
@@ -32,6 +33,11 @@ class ScoreCard
  public:
     //! Default constructor.
     ScoreCard();
+
+    //! Fills a score.
+    //! \param category The category to fill a score.
+    //! \param score The value of score.
+    void FillScore(Category category, int score);
 
     //! Checks that a list of dices satisfies "Three Of A Kind" condition.
     //! \param diceValues A list of values of the dice.
