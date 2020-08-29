@@ -37,7 +37,8 @@ class ScoreCard
     //! Fills a score.
     //! \param category The category to fill a score.
     //! \param score The value of score.
-    void FillScore(Category category, int score);
+    //! \return true if a score is filled successfully, false otherwise.
+    bool FillScore(Category category, int score);
 
     //! Checks that a list of dices satisfies "Three Of A Kind" condition.
     //! \param diceValues A list of values of the dice.

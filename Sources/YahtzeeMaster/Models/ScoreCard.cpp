@@ -16,15 +16,17 @@ ScoreCard::ScoreCard()
     m_scoreMarks.fill(false);
 }
 
-void ScoreCard::FillScore(Category category, int score)
+bool ScoreCard::FillScore(Category category, int score)
 {
     if (m_scoreMarks[category] == true)
     {
-        return;
+        return false;
     }
 
     m_scores[category] = score;
     m_scoreMarks[category] = true;
+
+    return true;
 }
 
 bool ScoreCard::IsThreeOfAKind(const std::array<int, NUM_DICES>& diceValues)
