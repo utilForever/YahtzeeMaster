@@ -6,6 +6,8 @@
 
 #include <YahtzeeMaster/Models/ScoreCard.hpp>
 
+#include <algorithm>
+
 namespace YahtzeeMaster
 {
 ScoreCard::ScoreCard()
@@ -35,5 +37,14 @@ bool ScoreCard::IsFullHouse(const std::array<int, NUM_DICES>& diceValues)
             diceValues[3] == diceValues[4]) ||
            (diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2] &&
             diceValues[3] == diceValues[4]);
+}
+
+bool ScoreCard::IsSmallStraight(const std::array<int, NUM_DICES>& diceValues)
+{
+    std::array<int, NUM_DICES> values = diceValues;
+    [[maybe_unused]] auto last = std::unique(values.begin(), values.end());
+
+    return (values[0] + 1 == values[1] && values[1] + 1 == values[2] &&
+            values[2] + 1 == values[3]);
 }
 }  // namespace YahtzeeMaster
