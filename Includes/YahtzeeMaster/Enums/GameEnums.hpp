@@ -34,6 +34,14 @@ enum Category
     YAHTZEE,
     CHANCE
 };
+
+//! \brief An enumerator for identifying the result.
+enum class Result
+{
+    INVALID,
+    WON,
+    LOST,
+};
 }  // namespace YahtzeeMaster
 
 #endif
