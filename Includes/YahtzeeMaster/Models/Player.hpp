@@ -46,6 +46,10 @@ class Player
     //! Calculates a list of scores according to the value of dices.
     void CalculateScores();
 
+    //! Fills a score to the score card.
+    //! \param category The category to fill a score.
+    void FillScoreCard(Category category);
+
  private:
     ScoreCard m_scoreCard;
 

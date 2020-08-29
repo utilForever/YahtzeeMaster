@@ -98,4 +98,9 @@ void Player::CalculateScores()
     m_scores[Category::YAHTZEE] = ScoreCard::IsFourOfAKind(values) ? 50 : 0;
     m_scores[Category::CHANCE] = sumOfAllDice;
 }
+
+void Player::FillScoreCard(Category category)
+{
+    m_scoreCard.FillScore(category, m_scores[category]);
+}
 }  // namespace YahtzeeMaster
