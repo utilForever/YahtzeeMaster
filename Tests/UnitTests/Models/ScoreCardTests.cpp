@@ -36,3 +36,12 @@ TEST_CASE("[ScoreCard] - FullHouse")
     CHECK_EQ(ScoreCard::IsFullHouse(diceValues1), false);
     CHECK_EQ(ScoreCard::IsFullHouse(diceValues2), true);
 }
+
+TEST_CASE("[ScoreCard] - SmallStraight")
+{
+    const std::array<int, NUM_DICES> diceValues1{ 1, 3, 4, 4, 6 };
+    const std::array<int, NUM_DICES> diceValues2{ 2, 2, 3, 4, 5 };
+
+    CHECK_EQ(ScoreCard::IsSmallStraight(diceValues1), false);
+    CHECK_EQ(ScoreCard::IsSmallStraight(diceValues2), true);
+}
