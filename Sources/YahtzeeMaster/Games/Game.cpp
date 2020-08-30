@@ -31,8 +31,8 @@ void Game::Start()
     // Create callback to process the next player
     auto processNextPlayerCallback = [this]() {
         // Increase the index of the current player
-        m_gameState.curPlayerIdx =
-            ++m_gameState.curPlayerIdx % m_gameState.players.size();
+        ++m_gameState.curPlayerIdx;
+        m_gameState.curPlayerIdx %= m_gameState.players.size();
 
         if (m_gameState.curPlayerIdx == 0)
         {
