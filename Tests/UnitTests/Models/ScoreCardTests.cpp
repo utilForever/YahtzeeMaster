@@ -6,9 +6,29 @@
 
 #include "doctest_proxy.hpp"
 
+#include <YahtzeeMaster/Games/Game.hpp>
 #include <YahtzeeMaster/Models/ScoreCard.hpp>
 
 using namespace YahtzeeMaster;
+
+TEST_CASE("[ScoreCard] - FillScore")
+{
+    GameConfig config;
+    config.numPlayers = 1;
+
+    Game game{ config };
+    game.Start();
+
+    CHECK_EQ(game.GetGameState().curRound, 1);
+
+    game.GetCurrentPlayer().RollDices();
+    game.GetCurrentPlayer().FillScoreCard(Category::ACES);
+    CHECK_EQ(game.GetGameState().curRound, 2);
+
+    game.GetCurrentPlayer().RollDices();
+    game.GetCurrentPlayer().FillScoreCard(Category::ACES);
+    CHECK_EQ(game.GetGameState().curRound, 2);
+}
 
 TEST_CASE("[ScoreCard] - ThreeOfAKind")
 {
