@@ -6,7 +6,15 @@
 #ifndef YAHTZEE_MASTER_HPP
 #define YAHTZEE_MASTER_HPP
 
-#include <YahtzeeMaster/Test.hpp>
+#include <YahtzeeMaster/Commons/Constants.hpp>
+#include <YahtzeeMaster/Enums/GameEnums.hpp>
+#include <YahtzeeMaster/Games/Game.hpp>
+#include <YahtzeeMaster/Games/GameConfig.hpp>
+#include <YahtzeeMaster/Games/GameManager.hpp>
+#include <YahtzeeMaster/Games/GameState.hpp>
+#include <YahtzeeMaster/Models/Dice.hpp>
+#include <YahtzeeMaster/Models/Player.hpp>
+#include <YahtzeeMaster/Models/ScoreCard.hpp>
 #include <YahtzeeMaster/YahtzeeMaster.hpp>
 
 #endif  // YAHTZEE_MASTER_HPP
