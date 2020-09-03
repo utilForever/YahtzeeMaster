@@ -18,6 +18,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Includes
 include_directories(Includes)
+include_directories(Extensions/YahtzeePython/Includes)
 include_directories(Libraries)
 include_directories(Libraries/doctest/doctest)
 include_directories(Libraries/pybind11/include)
