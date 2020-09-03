@@ -4,15 +4,11 @@
 // personal capacity and am not conveying any rights to any intellectual
 // property of any third parties.
 
-#include <Commons/Constants.hpp>
-#include <Enums/GameEnums.hpp>
+#ifndef YAHTZEE_MASTER_PYTHON_GAME_ENUMS_HPP
+#define YAHTZEE_MASTER_PYTHON_GAME_ENUMS_HPP
 
 #include <pybind11/pybind11.h>
 
-PYBIND11_MODULE(pyYahtzee, m)
-{
-    m.doc() = R"pbdoc(Yahtzee simulator with some reinforcement learning)pbdoc";
+void AddGameEnums(pybind11::module& m);
 
-    AddConstants(m);
-    AddGameEnums(m);
-}
+#endif
