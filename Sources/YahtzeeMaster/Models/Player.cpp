@@ -24,7 +24,7 @@ const ScoreCard& Player::GetScoreCard() const
 
 std::array<int, NUM_DICES> Player::GetDiceValues() const
 {
-    std::array<int, 5> ret{};
+    std::array<int, NUM_DICES> ret{};
 
     for (std::size_t i = 0; i < ret.size(); ++i)
     {
