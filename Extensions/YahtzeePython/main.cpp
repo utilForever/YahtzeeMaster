@@ -7,7 +7,8 @@
 #include <Commons/Constants.hpp>
 #include <Enums/GameEnums.hpp>
 #include <Games/Game.hpp>
-#include <Games/GameCOnfig.hpp>
+#include <Games/GameConfig.hpp>
+#include <Games/GameManager.hpp>
 
 #include <pybind11/pybind11.h>
 
@@ -19,4 +20,5 @@ PYBIND11_MODULE(pyYahtzee, m)
     AddGameEnums(m);
     AddGame(m);
     AddGameConfig(m);
+    AddGameManager(m);
 }
