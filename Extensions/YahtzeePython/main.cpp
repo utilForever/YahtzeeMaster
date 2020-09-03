@@ -10,6 +10,7 @@
 #include <Games/GameConfig.hpp>
 #include <Games/GameManager.hpp>
 #include <Games/GameState.hpp>
+#include <Models/Dice.hpp>
 
 #include <pybind11/pybind11.h>
 
@@ -23,4 +24,5 @@ PYBIND11_MODULE(pyYahtzee, m)
     AddGameConfig(m);
     AddGameManager(m);
     AddGameState(m);
+    AddDice(m);
 }
