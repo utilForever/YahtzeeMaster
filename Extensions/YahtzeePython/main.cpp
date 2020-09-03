@@ -1,0 +1,12 @@
+// Copyright (c) 2020 Chris Ohk
+
+// I am making my contributions/submissions to this project solely in our
+// personal capacity and am not conveying any rights to any intellectual
+// property of any third parties.
+
+#include <pybind11/pybind11.h>
+
+PYBIND11_MODULE(pyYahtzee, m)
+{
+    m.doc() = R"pbdoc(Yahtzee simulator with some reinforcement learning)pbdoc";
+}
