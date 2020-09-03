@@ -12,6 +12,7 @@
 #include <Games/GameState.hpp>
 #include <Models/Dice.hpp>
 #include <Models/Player.hpp>
+#include <Models/ScoreCard.hpp>
 
 #include <pybind11/pybind11.h>
 
@@ -27,4 +28,5 @@ PYBIND11_MODULE(pyYahtzee, m)
     AddGameState(m);
     AddDice(m);
     AddPlayer(m);
+    AddScoreCard(m);
 }
