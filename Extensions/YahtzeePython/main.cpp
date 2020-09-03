@@ -9,6 +9,7 @@
 #include <Games/Game.hpp>
 #include <Games/GameConfig.hpp>
 #include <Games/GameManager.hpp>
+#include <Games/GameState.hpp>
 
 #include <pybind11/pybind11.h>
 
@@ -21,4 +22,5 @@ PYBIND11_MODULE(pyYahtzee, m)
     AddGame(m);
     AddGameConfig(m);
     AddGameManager(m);
+    AddGameState(m);
 }
