@@ -19,7 +19,7 @@ constexpr int NUM_REROLLS = 3;
 constexpr int NUM_CATEGORIES = 13;
 
 //! The value of the upper section to gain the bonus score.
-constexpr int UPPER_SECTION_BONUS_CONDITION = 35;
+constexpr int UPPER_SECTION_BONUS_CONDITION = 63;
 
 //! The bonus of the upper section.
 constexpr int UPPER_SECTION_BONUS = 35;
