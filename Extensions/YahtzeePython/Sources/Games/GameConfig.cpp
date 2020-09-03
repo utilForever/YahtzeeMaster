@@ -13,5 +13,5 @@ using namespace YahtzeeMaster;
 
 void AddGameConfig(pybind11::module& m)
 {
-    pybind11::class_<GameConfig>(m, "GameConfig");
+    pybind11::class_<GameConfig>(m, "GameConfig").def(pybind11::init<>());
 }
