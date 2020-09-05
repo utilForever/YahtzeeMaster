@@ -38,7 +38,7 @@ def test_game_roll_dices():
 
     values2 = cur_player.get_dice_values()
     assert values1[2] == values2[2]
-    assert values1[4] == values1[4]
+    assert values1[4] == values2[4]
 
     cur_player.roll_dices([2, 3])
 
