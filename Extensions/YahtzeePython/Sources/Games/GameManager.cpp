@@ -13,6 +13,16 @@ using namespace YahtzeeMaster;
 
 void AddGameManager(pybind11::module& m)
 {
-    pybind11::class_<GameManager>(m, "GameManager")
-        .def("ProcessNextStep", &GameManager::ProcessNextStep);
+    pybind11::class_<GameManager>(
+        m, "GameManager",
+        R"pbdoc(This class monitors game and invokes method when a state is changed.)pbdoc")
+        .def(pybind11::init<>())
+        .def_static("process_next_step", &GameManager::ProcessNextStep,
+                    R"pbdoc(Invokes method when a state is changed.
+
+            Parameters
+            ----------
+            - game : The game context.
+            - step : The next step.)pbdoc",
+                    pybind11::arg("game"), pybind11::arg("step"));
 }

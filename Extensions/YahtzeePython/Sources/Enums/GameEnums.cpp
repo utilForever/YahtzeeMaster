@@ -13,13 +13,15 @@ using namespace YahtzeeMaster;
 
 void AddGameEnums(pybind11::module& m)
 {
-    pybind11::enum_<Step>(m, "Step")
+    pybind11::enum_<Step>(m, "Step",
+                          R"pbdoc(An enumerator for identifying the step.)pbdoc")
         .value("INVALID", Step::INVALID)
         .value("PLAY_ROUND", Step::PLAY_ROUND)
         .value("COMPLETE", Step::COMPLETE)
         .export_values();
 
-    pybind11::enum_<Category>(m, "Category")
+    pybind11::enum_<Category>(m, "Category",
+                              R"pbdoc(An enumerator for identifying the category.)pbdoc")
         .value("ACES", Category::ACES)
         .value("TWOS", Category::TWOS)
         .value("THREES", Category::THREES)
@@ -35,7 +37,8 @@ void AddGameEnums(pybind11::module& m)
         .value("CHANCE", Category::CHANCE)
         .export_values();
 
-    pybind11::enum_<Result>(m, "Result")
+    pybind11::enum_<Result>(m, "Result",
+                            R"pbdoc(An enumerator for identifying the result.)pbdoc")
         .value("INVALID", Result::INVALID)
         .value("WON", Result::WON)
         .value("LOST", Result::LOST)

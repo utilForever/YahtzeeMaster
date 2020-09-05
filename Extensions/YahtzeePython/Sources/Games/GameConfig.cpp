@@ -13,5 +13,9 @@ using namespace YahtzeeMaster;
 
 void AddGameConfig(pybind11::module& m)
 {
-    pybind11::class_<GameConfig>(m, "GameConfig").def(pybind11::init<>());
+    pybind11::class_<GameConfig>(
+        m, "GameConfig",
+        R"pbdoc(This struct holds all configuration values to create a new Game instance.)pbdoc")
+        .def(pybind11::init<>())
+        .def_readwrite("num_players", &GameConfig::numPlayers);
 }
