@@ -15,6 +15,12 @@ RUN apt-get update && apt-get install -y \
 
 COPY . /app
 
+WORKDIR /app/ENV3
+RUN cd .. && \
+    pip3 install -r requirements.txt && \
+    pip3 install . && \
+    python3 -m pytest ./Tests/PythonTests
+
 WORKDIR /app/build
 RUN cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_COVERAGE=ON && \
     make -j "$(nproc)" UnitTests && \
