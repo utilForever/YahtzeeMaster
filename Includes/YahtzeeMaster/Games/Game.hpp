@@ -31,11 +31,11 @@ class Game
     //! \param config The game config holds all configuration values.
     explicit Game(const GameConfig& config);
 
-    //! Gets the game state.
+    //! Returns the game state.
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
 
-    //! Gets the current player.
+    //! Returns the current player.
     //! \return The current player.
     [[nodiscard]] Player& GetCurrentPlayer();
 
