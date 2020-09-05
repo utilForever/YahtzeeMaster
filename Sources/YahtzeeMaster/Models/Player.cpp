@@ -24,7 +24,7 @@ const ScoreCard& Player::GetScoreCard() const
 
 std::array<int, NUM_DICES> Player::GetDiceValues() const
 {
-    std::array<int, 5> ret{};
+    std::array<int, NUM_DICES> ret{};
 
     for (std::size_t i = 0; i < ret.size(); ++i)
     {
@@ -39,7 +39,7 @@ std::array<int, NUM_CATEGORIES> Player::GetScores() const
     return m_scores;
 }
 
-void Player::SetDiceValues(std::initializer_list<int> diceValues)
+void Player::SetDiceValues(std::vector<int> diceValues)
 {
     std::size_t i = 0;
 
@@ -50,7 +50,7 @@ void Player::SetDiceValues(std::initializer_list<int> diceValues)
     }
 }
 
-void Player::RollDices(std::initializer_list<std::size_t> diceIndices)
+void Player::RollDices(std::vector<std::size_t> diceIndices)
 {
     if (m_numReroll == NUM_REROLLS)
     {

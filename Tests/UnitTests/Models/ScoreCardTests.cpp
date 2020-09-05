@@ -30,6 +30,21 @@ TEST_CASE("[ScoreCard] - FillScore")
     CHECK_EQ(game.GetGameState().curRound, 2);
 }
 
+TEST_CASE("[ScoreCard] - GetTotalScore")
+{
+    ScoreCard scoreCard;
+
+    scoreCard.FillScore(Category::ACES, 3);
+    scoreCard.FillScore(Category::TWOS, 6);
+    scoreCard.FillScore(Category::THREES, 9);
+    scoreCard.FillScore(Category::FOURS, 12);
+    scoreCard.FillScore(Category::FIVES, 15);
+    CHECK_EQ(scoreCard.GetTotalScore(), 45);
+
+    scoreCard.FillScore(Category::SIXES, 18);
+    CHECK_EQ(scoreCard.GetTotalScore(), 98);
+}
+
 TEST_CASE("[ScoreCard] - ThreeOfAKind")
 {
     const std::array<int, NUM_DICES> diceValues1{ 1, 2, 4, 4, 5 };
