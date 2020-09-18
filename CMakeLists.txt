@@ -39,6 +39,7 @@ set(CMAKE_MACOSX_RPATH ON)
 add_subdirectory(Libraries/doctest)
 add_subdirectory(Sources/YahtzeeMaster)
 add_subdirectory(Tests/UnitTests)
+add_subdirectory(Extensions/YahtzeeConsole)
 
 # Code coverage - Debug only
 # NOTE: Code coverage results with an optimized (non-Debug) build may be misleading
