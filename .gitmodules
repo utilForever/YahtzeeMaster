@@ -10,3 +10,6 @@
 [submodule "Libraries/Lyra"]
 	path = Libraries/Lyra
 	url = https://github.com/bfgroup/Lyra
+[submodule "Libraries/tabulate"]
+	path = Libraries/tabulate
+	url = https://github.com/p-ranav/tabulate
