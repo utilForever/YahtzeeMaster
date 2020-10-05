@@ -79,6 +79,8 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 		${WARN_AS_ERROR_FLAGS}
 
 		/wd4819       # -> disable warning: The file contains a character that cannot be represented in the current code page (949) (caused by pybind11)
+		/wd4100       # -> disable warning: Unreferenced formal parameter (caused by lyra)
+		/wd4458       # -> disable warning: Declaration of 'description' hides class member (caused by lyra)
 
 		#$<$<CONFIG:Debug>:
 		#/RTCc        # -> value is assigned to a smaller data type and results in a data loss
