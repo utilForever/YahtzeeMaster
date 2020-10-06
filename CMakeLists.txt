@@ -24,6 +24,7 @@ include_directories(Libraries/doctest/doctest)
 include_directories(Libraries/Lyra/include)
 include_directories(Libraries/pybind11/include)
 include_directories(Libraries/random/include)
+include_directories(Libraries/tabulate/include)
 
 # Compile options
 include(CMake/CompileOptions.cmake)
