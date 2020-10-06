@@ -4,11 +4,32 @@
 // personal capacity and am not conveying any rights to any intellectual
 // property of any third parties.
 
+#include <YahtzeeMaster/Games/Game.hpp>
+
 #include <lyra/lyra.hpp>
+
+using namespace YahtzeeMaster;
+
+void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
+{
+    Game game{ numPlayers };
+    game.Start();
+
+    // Human vs Computer(s)
+    if (mode == 1)
+    {
+        
+    }
+    // Computer vs Computer(s)
+    else
+    {
+        
+    }
+}
 
 int main(int argc, char* argv[])
 {
-    int mode = 1, numPlayers = 2;
+    std::size_t mode = 1, numPlayers = 2;
     bool showHelp = false;
 
     // Process CLI
@@ -31,6 +52,8 @@ int main(int argc, char* argv[])
         std::cout << cli << std::endl;
         return EXIT_SUCCESS;
     }
+
+    ProcessGame(mode, numPlayers);
 
     return EXIT_SUCCESS;
 }
