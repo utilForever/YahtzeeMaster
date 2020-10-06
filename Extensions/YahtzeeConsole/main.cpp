@@ -8,14 +8,15 @@
 
 int main(int argc, char* argv[])
 {
-    int mode = 1;
+    int mode = 1, numPlayers = 2;
     bool showHelp = false;
 
     // Process CLI
     const auto cli =
         lyra::cli() | lyra::help(showHelp) |
         lyra::opt(mode, "mode")["-m"]["--mode"](
-            "The game mode. (1 - Player vs Computer, 2 - Computer vs Computer)");
+            "The game mode. (1 - Human vs Computer(s), 2 - Computer vs Computer(s)") |
+        lyra::opt(numPlayers, "numPlayers")["-n"]["--num"]("The number of players.");
     const auto result = cli.parse({ argc, argv });
 
     if (!result)
