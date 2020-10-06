@@ -7,8 +7,22 @@
 #include <YahtzeeMaster/Games/Game.hpp>
 
 #include <lyra/lyra.hpp>
+#include <tabulate/table.hpp>
+
+#include <string>
 
 using namespace YahtzeeMaster;
+
+void ShowScoreCard(const Player& player)
+{
+    tabulate::Table table;
+    const std::array<int, NUM_CATEGORIES> scores = player.GetScores();
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        table.add_row({ std::to_string(scores[i]) });
+    }
+}
 
 void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
 {
@@ -18,12 +32,10 @@ void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
     // Human vs Computer(s)
     if (mode == 1)
     {
-        
     }
     // Computer vs Computer(s)
     else
     {
-        
     }
 }
 
