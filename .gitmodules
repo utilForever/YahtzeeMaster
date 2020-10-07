@@ -13,3 +13,6 @@
 [submodule "Libraries/tabulate"]
 	path = Libraries/tabulate
 	url = https://github.com/p-ranav/tabulate
+[submodule "Libraries/magic_enum"]
+	path = Libraries/magic_enum
+	url = https://github.com/Neargye/magic_enum
