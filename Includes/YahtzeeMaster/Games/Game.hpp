@@ -35,6 +35,10 @@ class Game
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
 
+    //! Returns the number of players.
+    //! \return The number of players.
+    [[nodiscard]] std::size_t GetNumPlayers() const;
+
     //! Returns the current player.
     //! \return The current player.
     [[nodiscard]] Player& GetCurrentPlayer();

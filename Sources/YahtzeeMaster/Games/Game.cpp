@@ -21,6 +21,11 @@ GameState& Game::GetGameState()
     return m_gameState;
 }
 
+std::size_t Game::GetNumPlayers() const
+{
+    return m_config.numPlayers;
+}
+
 Player& Game::GetCurrentPlayer()
 {
     return m_gameState.players[m_gameState.curPlayerIdx];
