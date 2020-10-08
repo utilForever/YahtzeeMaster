@@ -40,6 +40,11 @@ class ScoreCard
     //! \return true if a score is filled successfully, false otherwise.
     bool FillScore(Category category, int score);
 
+    //! Returns the score of \p category.
+    //! \param category The category to get score.
+    //! \return The score of \p category.
+    [[nodiscard]] int GetScore(Category category) const;
+
     //! Returns the total score.
     //! \return The total score.
     [[nodiscard]] int GetTotalScore() const;

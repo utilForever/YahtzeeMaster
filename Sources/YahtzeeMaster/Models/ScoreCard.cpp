@@ -30,6 +30,11 @@ bool ScoreCard::FillScore(Category category, int score)
     return true;
 }
 
+int ScoreCard::GetScore(Category category) const
+{
+    return m_scores[category];
+}
+
 int ScoreCard::GetTotalScore() const
 {
     const int bonus = (m_scores[Category::ACES] + m_scores[Category::TWOS] +
