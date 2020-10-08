@@ -43,6 +43,11 @@ class Game
     //! \return The current player.
     [[nodiscard]] Player& GetCurrentPlayer();
 
+    //! Returns the player at \p idx.
+    //! \param idx The index of player array.
+    //! \return The player at \p idx.
+    [[nodiscard]] Player& GetPlayer(std::size_t idx);
+
     //! Starts the game.
     void Start();
 

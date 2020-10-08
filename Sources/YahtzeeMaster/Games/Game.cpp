@@ -8,6 +8,7 @@
 #include <YahtzeeMaster/Games/GameManager.hpp>
 
 #include <algorithm>
+#include <cassert>
 
 namespace YahtzeeMaster
 {
@@ -29,6 +30,13 @@ std::size_t Game::GetNumPlayers() const
 Player& Game::GetCurrentPlayer()
 {
     return m_gameState.players[m_gameState.curPlayerIdx];
+}
+
+Player& Game::GetPlayer(std::size_t idx)
+{
+    assert(idx >= 0 && idx < m_config.numPlayers);
+
+    return m_gameState.players[idx];
 }
 
 void Game::Start()
