@@ -7,27 +7,83 @@
 #include <YahtzeeMaster/Games/Game.hpp>
 
 #include <lyra/lyra.hpp>
+#include <magic_enum.hpp>
 #include <tabulate/table.hpp>
 
 #include <string>
 
 using namespace YahtzeeMaster;
 
-void ShowScoreCard(const Player& player)
+void ShowScoreCard(Game& game)
 {
     tabulate::Table table;
-    const std::array<int, NUM_CATEGORIES> scores = player.GetScores();
+
+    const std::size_t numPlayers = game.GetNumPlayers();
+
+    std::vector<variant<std::string, const char*, tabulate::Table>> title;
+    title.reserve(numPlayers + 1);
+
+    title.emplace_back("Categories");
+    for (std::size_t i = 0; i < numPlayers; ++i)
+    {
+        title.emplace_back(std::to_string(i + 1) + "P");
+    }
+    table.add_row(title);
+
+    std::vector<variant<std::string, const char*, tabulate::Table>> scores;
+    scores.reserve(numPlayers + 1);
 
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
-        table.add_row({ std::to_string(scores[i]) });
+        const auto category = static_cast<Category>(i);
+
+        scores.clear();
+
+        scores.emplace_back(std::string{ magic_enum::enum_name(category) });
+        for (std::size_t j = 0; j < numPlayers; ++j)
+        {
+            const ScoreCard& scoreCard = game.GetPlayer(j).GetScoreCard();
+            scores.emplace_back(std::to_string(scoreCard.GetScore(category)));
+        }
+        table.add_row(scores);
     }
+
+    table[0][0].format().font_color(tabulate::Color::red);
+    for (std::size_t i = 1; i <= numPlayers; ++i)
+    {
+        table[0][i]
+            .format()
+            .font_color(tabulate::Color::magenta)
+            .font_align(tabulate::FontAlign::center);
+    }
+
+    for (std::size_t i = 1; i <= NUM_CATEGORIES; ++i)
+    {
+        const tabulate::Color color =
+            (i <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
+        table[i][0].format().font_color(color);
+    }
+
+    for (std::size_t i = 1; i <= NUM_CATEGORIES; ++i)
+    {
+        for (std::size_t j = 1; j <= numPlayers; ++j)
+        {
+            table[i][j]
+                .format()
+                .font_color(tabulate::Color::none)
+                .font_align(tabulate::FontAlign::center);
+        }
+    }
+
+    std::cout << table << std::endl;
 }
 
 void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
 {
     Game game{ numPlayers };
     game.Start();
+
+    ShowScoreCard(game);
 
     // Human vs Computer(s)
     if (mode == 1)
