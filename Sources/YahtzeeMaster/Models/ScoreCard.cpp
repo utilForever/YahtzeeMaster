@@ -47,6 +47,11 @@ int ScoreCard::GetTotalScore() const
     return std::accumulate(m_scores.begin(), m_scores.end(), 0) + bonus;
 }
 
+bool ScoreCard::IsFilled(Category category) const
+{
+    return m_scoreMarks[category];
+}
+
 bool ScoreCard::IsThreeOfAKind(const std::array<int, NUM_DICES>& diceValues)
 {
     return (diceValues[0] == diceValues[1] && diceValues[1] == diceValues[2]) ||

@@ -49,6 +49,11 @@ class ScoreCard
     //! \return The total score.
     [[nodiscard]] int GetTotalScore() const;
 
+    //! Checks the value of \p category is filled.
+    //! \param category The category to check that it is filled.
+    //! \return true if the value of \p category is filled, false otherwise.
+    [[nodiscard]] bool IsFilled(Category category) const;
+
     //! Checks that a list of dices satisfies "Three Of A Kind" condition.
     //! \param diceValues A list of values of the dice.
     //! \return true if a list of dices satisfies the condition, false otherwise.
