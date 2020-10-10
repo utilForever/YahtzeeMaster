@@ -11,11 +11,11 @@ jobs:
       - template: Scripts/azure_pipelines_build_windows_vs2019.yml
     - job: Linux
       pool:
-        vmImage: 'Ubuntu-16.04'
+        vmImage: 'ubuntu-20.04'
       steps:
       - template: Scripts/azure_pipelines_build_linux.yml
     - job: macOS
       pool:
-        vmImage: 'macOS-10.14'
+        vmImage: 'macOS-10.15'
       steps:
       - template: Scripts/azure_pipelines_build_macos.yml
