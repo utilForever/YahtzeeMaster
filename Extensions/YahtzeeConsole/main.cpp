@@ -68,10 +68,10 @@ void ShowScoreCard(Game& game)
     {
         for (std::size_t j = 1; j <= numPlayers; ++j)
         {
-            const tabulate::Color color =
-                game.GetPlayer(j).GetScoreCard().IsFilled(static_cast<Category>(i - 1))
-                    ? tabulate::Color::green
-                    : tabulate::Color::none;
+            const tabulate::Color color = game.GetPlayer(j - 1).GetScoreCard().IsFilled(
+                                              static_cast<Category>(i - 1))
+                                              ? tabulate::Color::green
+                                              : tabulate::Color::none;
 
             table[i][j].format().font_color(color).font_align(
                 tabulate::FontAlign::center);
