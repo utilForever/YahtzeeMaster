@@ -22,6 +22,14 @@ TEST_CASE("[Game] - GetGameState")
     CHECK_EQ(gameState.curPlayerIdx, 0);
 }
 
+TEST_CASE("[Game] - GetNumPlayers")
+{
+    Game game{ 2 };
+    game.Start();
+
+    CHECK_EQ(game.GetNumPlayers(), 2);
+}
+
 TEST_CASE("[Game] - RollDices")
 {
     GameConfig config;
