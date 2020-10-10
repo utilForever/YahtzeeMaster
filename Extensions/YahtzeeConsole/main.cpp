@@ -60,7 +60,7 @@ void ShowScoreCard(Game& game)
     for (std::size_t i = 1; i <= NUM_CATEGORIES; ++i)
     {
         const tabulate::Color color =
-            (i <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
+            (i - 1 <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
         table[i][0].format().font_color(color);
     }
 
@@ -69,7 +69,7 @@ void ShowScoreCard(Game& game)
         for (std::size_t j = 1; j <= numPlayers; ++j)
         {
             const tabulate::Color color =
-                game.GetPlayer(j).GetScoreCard().IsFilled(static_cast<Category>(i))
+                game.GetPlayer(j).GetScoreCard().IsFilled(static_cast<Category>(i - 1))
                     ? tabulate::Color::green
                     : tabulate::Color::none;
 
