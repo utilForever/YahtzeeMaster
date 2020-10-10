@@ -30,6 +30,19 @@ TEST_CASE("[ScoreCard] - FillScore")
     CHECK_EQ(game.GetGameState().curRound, 2);
 }
 
+TEST_CASE("[ScoreCard] - GetScore")
+{
+    ScoreCard scoreCard;
+
+    scoreCard.FillScore(Category::TWOS, 10);
+    scoreCard.FillScore(Category::FOUR_OF_A_KIND, 21);
+
+    CHECK_EQ(scoreCard.GetScore(Category::ACES), 0);
+    CHECK_EQ(scoreCard.GetScore(Category::TWOS), 10);
+    CHECK_EQ(scoreCard.GetScore(Category::THREE_OF_A_KIND), 0);
+    CHECK_EQ(scoreCard.GetScore(Category::FOUR_OF_A_KIND), 21);
+}
+
 TEST_CASE("[ScoreCard] - GetTotalScore")
 {
     ScoreCard scoreCard;
