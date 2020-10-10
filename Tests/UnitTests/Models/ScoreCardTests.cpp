@@ -45,6 +45,31 @@ TEST_CASE("[ScoreCard] - GetTotalScore")
     CHECK_EQ(scoreCard.GetTotalScore(), 98);
 }
 
+TEST_CASE("[ScoreCard] - IsFilled")
+{
+    ScoreCard scoreCard;
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        CHECK_FALSE(scoreCard.IsFilled(static_cast<Category>(i)));
+    }
+
+    scoreCard.FillScore(Category::ACES, 4);
+    scoreCard.FillScore(Category::FULL_HOUSE, 26);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        if (i == 0 || i == 8)
+        {
+            CHECK(scoreCard.IsFilled(static_cast<Category>(i)));
+        }
+        else
+        {
+            CHECK_FALSE(scoreCard.IsFilled(static_cast<Category>(i)));
+        }
+    }
+}
+
 TEST_CASE("[ScoreCard] - ThreeOfAKind")
 {
     const std::array<int, NUM_DICES> diceValues1{ 1, 2, 4, 4, 5 };
