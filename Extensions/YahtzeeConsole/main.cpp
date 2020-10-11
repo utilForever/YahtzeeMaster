@@ -81,12 +81,40 @@ void ShowScoreCard(Game& game)
     std::cout << table << std::endl;
 }
 
-void PlayHumanTurn()
+void PlayHumanTurn(Game& game)
 {
+    Player& player = game.GetCurrentPlayer();
+    player.RollDices();
+
+    std::cout << "Your dice values: ";
+    const std::array<int, NUM_DICES> diceVals = player.GetDiceValues();
+    for (const auto& val : diceVals)
+    {
+        std::cout << val << " ";
+    }
+    std::cout << "\n";
+
+    int choice;
+    std::cout << "Choice (1 = Reroll, 2 = Choose Category): ";
+    std::cin >> choice;
+
+    if (choice == 1)
+    {
+       
+    }
+    else if (choice == 2)
+    {
+        
+    }
+    else
+    {
+        
+    }
 }
 
-void PlayComputerTurn()
+void PlayComputerTurn(Game& game)
 {
+    (void)game;
 }
 
 void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
@@ -103,11 +131,11 @@ void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
             // Human turn
             if (mode == 1 && j == 0)
             {
-                PlayHumanTurn();
+                PlayHumanTurn(game);
             }
             else
             {
-                PlayComputerTurn();
+                PlayComputerTurn(game);
             }
         }
     }
