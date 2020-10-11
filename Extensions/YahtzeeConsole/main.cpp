@@ -81,20 +81,35 @@ void ShowScoreCard(Game& game)
     std::cout << table << std::endl;
 }
 
+void PlayHumanTurn()
+{
+}
+
+void PlayComputerTurn()
+{
+}
+
 void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
 {
     Game game{ numPlayers };
     game.Start();
 
-    ShowScoreCard(game);
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        for (std::size_t j = 0; j < numPlayers; ++j)
+        {
+            ShowScoreCard(game);
 
-    // Human vs Computer(s)
-    if (mode == 1)
-    {
-    }
-    // Computer vs Computer(s)
-    else
-    {
+            // Human turn
+            if (mode == 1 && j == 0)
+            {
+                PlayHumanTurn();
+            }
+            else
+            {
+                PlayComputerTurn();
+            }
+        }
     }
 }
 
