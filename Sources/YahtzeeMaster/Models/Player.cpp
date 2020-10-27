@@ -39,6 +39,11 @@ std::array<int, NUM_CATEGORIES> Player::GetScores() const
     return m_scores;
 }
 
+int Player::GetRemainReroll() const
+{
+    return NUM_REROLLS - m_numReroll;
+}
+
 void Player::SetDiceValues(std::vector<int> diceValues)
 {
     std::size_t i = 0;

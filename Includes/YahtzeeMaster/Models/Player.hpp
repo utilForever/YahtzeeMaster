@@ -40,6 +40,10 @@ class Player
     //! \return A list of scores according to the value of dices.
     [[nodiscard]] std::array<int, NUM_CATEGORIES> GetScores() const;
 
+    //! Returns the number of remain reroll.
+    //! \return The number of remain reroll.
+    [[nodiscard]] int GetRemainReroll() const;
+
     //! Sets a list of values of the dice (for testing purposes).
     //! \param diceValues A list of values of the dice to set.
     void SetDiceValues(std::vector<int> diceValues);
