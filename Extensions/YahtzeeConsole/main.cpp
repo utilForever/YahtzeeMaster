@@ -95,20 +95,23 @@ void PlayHumanTurn(Game& game)
     std::cout << "\n";
 
     int choice;
-    std::cout << "Choice (1 = Reroll, 2 = Choose Category): ";
+    std::cout << "1. Reroll (Remain: " << player.GetRemainReroll() << ")\n";
+    std::cout << "2. Choose category\n";
+    std::cout << "3. Show score card\n";
+    std::cout << "Choice: ";
     std::cin >> choice;
 
     if (choice == 1)
     {
-       
     }
     else if (choice == 2)
     {
-        
+    }
+    else if (choice == 3)
+    {
     }
     else
     {
-        
     }
 }
 
@@ -126,8 +129,6 @@ void ProcessGame(const std::size_t mode, const std::size_t numPlayers)
     {
         for (std::size_t j = 0; j < numPlayers; ++j)
         {
-            ShowScoreCard(game);
-
             // Human turn
             if (mode == 1 && j == 0)
             {
