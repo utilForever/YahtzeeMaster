@@ -36,6 +36,9 @@ class Console
     void ShowScoreCard();
 
  private:
+    // Shows a list of dice values.
+    void ShowDiceValues() const;
+
     std::unique_ptr<Game> m_game;
 
     Mode m_mode;

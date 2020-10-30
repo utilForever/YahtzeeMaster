@@ -46,13 +46,7 @@ void Console::PlayHumanTurn()
     Player& player = m_game->GetCurrentPlayer();
     player.RollDices();
 
-    std::cout << "Your dice values: ";
-    const std::array<int, NUM_DICES> diceVals = player.GetDiceValues();
-    for (const auto& val : diceVals)
-    {
-        std::cout << val << " ";
-    }
-    std::cout << "\n";
+    ShowDiceValues();
 
     int choice;
     std::cout << "1. Reroll (Remain: " << player.GetRemainReroll() << ")\n";
@@ -77,6 +71,19 @@ void Console::PlayHumanTurn()
 
 void Console::PlayComputerTurn()
 {
+}
+
+void Console::ShowDiceValues() const
+{
+    Player& player = m_game->GetCurrentPlayer();
+
+    std::cout << "Your dice values: ";
+    const std::array<int, NUM_DICES> diceVals = player.GetDiceValues();
+    for (const auto& val : diceVals)
+    {
+        std::cout << val << " ";
+    }
+    std::cout << "\n";
 }
 
 void Console::ShowScoreCard()
