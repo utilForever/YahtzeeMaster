@@ -13,30 +13,34 @@
 
 namespace YahtzeeMaster
 {
-Console::Console(Mode mode, std::size_t numPlayers)
-    : m_mode(mode), m_numPlayers(numPlayers)
+Console::Console(Mode mode) : m_mode{ mode }
 {
     // Do nothing
 }
 
 void Console::ProcessGame()
 {
-    m_game = std::make_unique<Game>(m_numPlayers);
+    if (m_mode == Mode::SINGLE_HUMAN || m_mode == Mode::SINGLE_COMPUTER)
+    {
+        m_game = std::make_unique<Game>(1);    
+    }
+    else
+    {
+        m_game = std::make_unique<Game>(2);
+    }
+    
     m_game->Start();
 
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
-        for (std::size_t j = 0; j < m_numPlayers; ++j)
+        // Human turn
+        if (m_mode == Mode::HUMAN_VS_COMPUTER)
         {
-            // Human turn
-            if (m_mode == Mode::HUMAN_VS_COMPUTER && j == 0)
-            {
-                PlayHumanTurn();
-            }
-            else
-            {
-                PlayComputerTurn();
-            }
+            PlayHumanTurn();
+        }
+        else
+        {
+            PlayComputerTurn();
         }
     }
 }

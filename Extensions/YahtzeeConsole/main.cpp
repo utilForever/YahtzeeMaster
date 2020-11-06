@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
 
-    Console console{ static_cast<Console::Mode>(mode), numPlayers };
+    Console console{ static_cast<Console::Mode>(mode) };
     console.ProcessGame();
 
     return EXIT_SUCCESS;

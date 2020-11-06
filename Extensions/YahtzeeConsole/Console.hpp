@@ -24,10 +24,9 @@ class Console
         COMPUTER_VS_COMPUTER
     };
 
-    //! Constructs a Console instance with \p mode and \p numPlayers.
-    //! \param mode The game mode (human vs computer, computer vs computer).
-    //! \param numPlayers The number of player.
-    Console(Mode mode, std::size_t numPlayers);
+    //! Constructs a Console instance with \p mode.
+    //! \param mode The game mode such as single and versus.
+    Console(Mode mode);
 
     //! Process a Yahtzee game.
     void ProcessGame();
@@ -44,7 +43,6 @@ class Console
     std::unique_ptr<Game> m_game;
 
     Mode m_mode;
-    std::size_t m_numPlayers;
 };
 }  // namespace YahtzeeMaster
 
