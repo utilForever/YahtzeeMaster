@@ -33,14 +33,22 @@ void Console::ProcessGame()
 
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
-        // Human turn
-        if (m_mode == Mode::HUMAN_VS_COMPUTER)
+        switch (m_mode)
         {
-            PlayHumanTurn();
-        }
-        else
-        {
-            PlayComputerTurn();
+            case Mode::SINGLE_HUMAN:
+                PlayHumanTurn();
+                break;
+            case Mode::SINGLE_COMPUTER:
+                PlayComputerTurn();
+                break;
+            case Mode::HUMAN_VS_COMPUTER:
+                PlayHumanTurn();
+                PlayComputerTurn();
+                break;
+            case Mode::COMPUTER_VS_COMPUTER:
+                PlayComputerTurn();
+                PlayComputerTurn();
+                break;
         }
     }
 }
