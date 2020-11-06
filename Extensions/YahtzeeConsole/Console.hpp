@@ -18,6 +18,8 @@ class Console
  public:
     enum class Mode
     {
+        SINGLE_HUMAN,
+        SINGLE_COMPUTER,
         HUMAN_VS_COMPUTER,
         COMPUTER_VS_COMPUTER
     };
