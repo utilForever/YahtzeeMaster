@@ -35,6 +35,13 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
 
+    if (mode != 0)
+    {
+        std::cerr << "Sorry, the console supports single human mode only." << std::endl;
+        std::cerr << "I'll implement other modes ASAP." << std::endl;
+        return EXIT_SUCCESS;
+    }
+
     Console console{ static_cast<Console::Mode>(mode) };
     console.ProcessGame();
 
