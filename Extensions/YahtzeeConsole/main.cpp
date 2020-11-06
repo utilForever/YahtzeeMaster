@@ -12,15 +12,14 @@ using namespace YahtzeeMaster;
 
 int main(int argc, char* argv[])
 {
-    std::size_t mode = 1, numPlayers = 2;
+    std::size_t mode = 0;
     bool showHelp = false;
 
     // Process CLI
-    const auto cli =
-        lyra::cli() | lyra::help(showHelp) |
-        lyra::opt(mode, "mode")["-m"]["--mode"](
-            "The game mode. (1 - Human vs Computer(s), 2 - Computer vs Computer(s)") |
-        lyra::opt(numPlayers, "numPlayers")["-n"]["--num"]("The number of players.");
+    const auto cli = lyra::cli() | lyra::help(showHelp) |
+                     lyra::opt(mode, "mode")["-m"]["--mode"](
+                         "The game mode. (0 - Single Human, 1 - Single Com, 2 - Human vs "
+                         "Com, 3 - Com vs Com)");
     const auto result = cli.parse({ argc, argv });
 
     if (!result)
