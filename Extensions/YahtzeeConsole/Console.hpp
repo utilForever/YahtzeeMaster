@@ -41,6 +41,12 @@ class Console
     //! Shows a score card.
     void ShowScoreCard();
 
+    //! Processes a reroll.
+    void ProcessReroll();
+
+    //! Chooses a category to record on the score card.
+    void ChooseCategory();
+
     // Shows a list of dice values.
     void ShowDiceValues() const;
 

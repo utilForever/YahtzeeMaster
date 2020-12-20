@@ -22,13 +22,13 @@ void Console::ProcessGame()
 {
     if (m_mode == Mode::SINGLE_HUMAN || m_mode == Mode::SINGLE_COMPUTER)
     {
-        m_game = std::make_unique<Game>(1);    
+        m_game = std::make_unique<Game>(1);
     }
     else
     {
         m_game = std::make_unique<Game>(2);
     }
-    
+
     m_game->Start();
 
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
@@ -69,15 +69,19 @@ void Console::PlayHumanTurn()
 
     if (choice == 1)
     {
+        ProcessReroll();
     }
     else if (choice == 2)
     {
+        ChooseCategory();
     }
     else if (choice == 3)
     {
+        ShowScoreCard();
     }
     else
     {
+        std::cout << "Invalid number! Choose again.\n";
     }
 }
 
@@ -96,6 +100,14 @@ void Console::ShowDiceValues() const
         std::cout << val << " ";
     }
     std::cout << "\n";
+}
+
+void Console::ProcessReroll()
+{
+}
+
+void Console::ChooseCategory()
+{
 }
 
 void Console::ShowScoreCard()
