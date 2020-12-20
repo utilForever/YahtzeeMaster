@@ -31,12 +31,16 @@ class Console
     //! Process a Yahtzee game.
     void ProcessGame();
 
+ private:
+    //! Plays a turn for human.
     void PlayHumanTurn();
+
+    //! Plays a turn for computer.
     void PlayComputerTurn();
 
+    //! Shows a score card.
     void ShowScoreCard();
 
- private:
     // Shows a list of dice values.
     void ShowDiceValues() const;
 
