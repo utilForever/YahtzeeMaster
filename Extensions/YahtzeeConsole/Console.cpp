@@ -66,8 +66,14 @@ void Console::PlayHumanTurn()
     {
         player.RollDices(rerollVals);
         ShowDiceValues();
-        rerollVals = ProcessReroll();
+
+        if (i < NUM_ROLLS - 1)
+        {
+            rerollVals = ProcessReroll();
+        }
     }
+
+    ChooseCategory();
 }
 
 void Console::PlayComputerTurn()
