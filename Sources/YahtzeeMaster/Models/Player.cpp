@@ -94,11 +94,11 @@ void Player::RollDices(bool isFirst, std::vector<int> rerollValues)
                 }
                 else if (diff > 0)
                 {
-                    ++i;
+                    ++j;
                 }
                 else
                 {
-                    ++j;
+                    ++i;
                 }
             }
 
