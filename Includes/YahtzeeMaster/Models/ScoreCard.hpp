@@ -45,6 +45,10 @@ class ScoreCard
     //! \return The score of \p category.
     [[nodiscard]] int GetScore(Category category) const;
 
+    //! Returns the score of upper categories.
+    //! \return The score of upper categories.
+    [[nodiscard]] int GetUpperCategoryScore() const;
+
     //! Returns the total score.
     //! \return The total score.
     [[nodiscard]] int GetTotalScore() const;

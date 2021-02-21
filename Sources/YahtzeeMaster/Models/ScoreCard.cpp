@@ -35,12 +35,16 @@ int ScoreCard::GetScore(Category category) const
     return m_scores[category];
 }
 
+int ScoreCard::GetUpperCategoryScore() const
+{
+    return m_scores[Category::ACES] + m_scores[Category::TWOS] +
+           m_scores[Category::THREES] + m_scores[Category::FOURS] +
+           m_scores[Category::FIVES] + m_scores[Category::SIXES];
+}
+
 int ScoreCard::GetTotalScore() const
 {
-    const int bonus = (m_scores[Category::ACES] + m_scores[Category::TWOS] +
-                       m_scores[Category::THREES] + m_scores[Category::FOURS] +
-                       m_scores[Category::FIVES] + m_scores[Category::SIXES]) >=
-                              UPPER_SECTION_BONUS_CONDITION
+    const int bonus = (GetUpperCategoryScore()) >= UPPER_SECTION_BONUS_CONDITION
                           ? UPPER_SECTION_BONUS
                           : 0;
 
