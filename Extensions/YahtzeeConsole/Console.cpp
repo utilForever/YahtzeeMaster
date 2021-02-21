@@ -120,6 +120,34 @@ std::vector<int> Console::ProcessReroll()
 void Console::ChooseCategory()
 {
     ShowScoresByDice();
+
+    std::string categoryName;
+
+    while (true)
+    {
+        Player& player = m_game->GetCurrentPlayer();
+
+        std::cout << "Select category: ";
+        std::cin >> categoryName;
+
+        auto category = magic_enum::enum_cast<Category>(categoryName);
+        if (category.has_value())
+        {
+            if (player.GetScoreCard().IsFilled(category.value()))
+            {
+                std::cout << categoryName << " is already filled!\n";
+            }
+            else
+            {
+                player.FillScoreCard(category.value());
+                break;
+            }
+        }
+        else
+        {
+            std::cout << "Invalid category!\n";
+        }
+    }
 }
 
 void Console::ShowScoreCard()
