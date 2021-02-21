@@ -44,13 +44,13 @@ class Player
     //! \return The number of remain reroll.
     [[nodiscard]] int GetRemainReroll() const;
 
-    //! Sets a list of values of the dice (for testing purposes).
-    //! \param diceValues A list of values of the dice to set.
+    //! Sets a list of dice values (for testing purposes).
+    //! \param diceValues A list of dice values to set.
     void SetDiceValues(std::vector<int> diceValues);
 
     //! Rolls a list of dices.
-    //! \param diceIndices A list of indices of dice to roll.
-    void RollDices(std::vector<std::size_t> diceIndices = { 0, 1, 2, 3, 4 });
+    //! \param rerollValues A list of dice values to roll.
+    void RollDices(std::vector<int> rerollValues = {});
 
     //! Calculates a list of scores according to the value of dices.
     void CalculateScores();

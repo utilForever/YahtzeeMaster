@@ -57,16 +57,53 @@ void Player::SetDiceValues(std::vector<int> diceValues)
     }
 }
 
-void Player::RollDices(std::vector<std::size_t> diceIndices)
+void Player::RollDices(std::vector<int> rerollValues)
 {
     if (m_numReroll == NUM_REROLLS)
     {
         return;
     }
 
-    for (const std::size_t& diceIndex : diceIndices)
+    if (rerollValues.empty())
     {
-        m_dices[diceIndex].Roll();
+        for (int i = 0; i < NUM_DICES; ++i)
+        {
+            m_dices[i].Roll();
+        }
+    }
+    else
+    {
+        std::sort(rerollValues.begin(), rerollValues.end());
+
+        std::size_t i = 0, j = 0;
+        std::vector<std::size_t> indices;
+        indices.reserve(rerollValues.size());
+
+        while (i < rerollValues.size() && j < m_dices.size())
+        {
+            const int diff = rerollValues.at(i) - m_dices.at(j).GetValue();
+
+            if (diff == 0)
+            {
+                indices.emplace_back(j);
+
+                ++i;
+                ++j;
+            }
+            else if (diff > 0)
+            {
+                ++i;
+            }
+            else
+            {
+                ++j;
+            }
+        }
+
+        for (auto& index : indices)
+        {
+            m_dices[index].Roll();
+        }
     }
 
     std::sort(m_dices.begin(), m_dices.end(),
