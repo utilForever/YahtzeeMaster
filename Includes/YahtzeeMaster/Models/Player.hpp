@@ -69,7 +69,7 @@ class Player
     std::array<Dice, NUM_DICES> m_dices;
     std::array<int, NUM_CATEGORIES> m_scores{};
 
-    int m_numReroll = 0;
+    int m_numRoll = 0;
 };
 }  // namespace YahtzeeMaster
 

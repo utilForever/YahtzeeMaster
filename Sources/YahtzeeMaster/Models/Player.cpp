@@ -14,7 +14,7 @@ namespace YahtzeeMaster
 void Player::Initialize()
 {
     m_scores.fill(0);
-    m_numReroll = 0;
+    m_numRoll = 0;
 }
 
 const ScoreCard& Player::GetScoreCard() const
@@ -41,7 +41,7 @@ std::array<int, NUM_CATEGORIES> Player::GetScores() const
 
 int Player::GetRemainReroll() const
 {
-    return NUM_ROLLS - m_numReroll;
+    return NUM_ROLLS - m_numRoll;
 }
 
 void Player::SetDiceValues(std::vector<int> diceValues)
@@ -59,7 +59,7 @@ void Player::SetDiceValues(std::vector<int> diceValues)
 
 void Player::RollDices(std::vector<int> rerollValues)
 {
-    if (m_numReroll == NUM_ROLLS)
+    if (m_numRoll == NUM_ROLLS)
     {
         return;
     }
@@ -111,7 +111,7 @@ void Player::RollDices(std::vector<int> rerollValues)
 
     CalculateScores();
 
-    ++m_numReroll;
+    ++m_numRoll;
 }
 
 void Player::CalculateScores()
