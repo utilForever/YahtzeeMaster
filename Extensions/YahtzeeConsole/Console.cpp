@@ -159,14 +159,21 @@ void Console::ShowScoreCard()
     tabulate::Table table;
 
     std::vector<variant<std::string, const char*, tabulate::Table>> title;
-    title.reserve(NUM_CATEGORIES + 1);
+    title.reserve(NUM_CATEGORIES + 3);
 
     title.emplace_back("");
-    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
         const auto category = static_cast<Category>(i);
         title.emplace_back(std::string{ magic_enum::enum_name(category) });
     }
+    title.emplace_back("BONUS");
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
+    {
+        const auto category = static_cast<Category>(i);
+        title.emplace_back(std::string{ magic_enum::enum_name(category) });
+    }
+    title.emplace_back("TOTAL");
     table.add_row(title);
 
     const std::size_t numPlayers = m_game->GetNumPlayers();
@@ -177,24 +184,35 @@ void Console::ShowScoreCard()
         const ScoreCard& scoreCard = player.GetScoreCard();
 
         std::vector<variant<std::string, const char*, tabulate::Table>> scores;
-        scores.reserve(NUM_CATEGORIES + 1);
+        scores.reserve(NUM_CATEGORIES + 3);
 
         scores.emplace_back(std::to_string(i + 1) + "P");
-        for (std::size_t j = 0; j < NUM_CATEGORIES; ++j)
+        for (int j = 0; j < NUM_UPPER_CATEGORIES; ++j)
         {
             scores.emplace_back(
                 std::to_string(scoreCard.GetScore(static_cast<Category>(j))));
         }
-
+        scores.emplace_back(std::to_string(scoreCard.GetUpperCategoryScore()) + "/" +
+                            std::to_string(UPPER_SECTION_BONUS_CONDITION));
+        for (int j = NUM_UPPER_CATEGORIES; j < NUM_CATEGORIES; ++j)
+        {
+            scores.emplace_back(
+                std::to_string(scoreCard.GetScore(static_cast<Category>(j))));
+        }
+        scores.emplace_back(std::to_string(scoreCard.GetTotalScore()));
         table.add_row(scores);
     }
 
-    for (std::size_t i = 1; i <= NUM_CATEGORIES; ++i)
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
-        const tabulate::Color color =
-            (i - 1 <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
-        table[0][i].format().font_color(color);
+        table[0][i + 1].format().font_color(tabulate::Color::yellow);
     }
+    table[0][NUM_UPPER_CATEGORIES + 1].format().font_color(tabulate::Color::blue);
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
+    {
+        table[0][i + 2].format().font_color(tabulate::Color::cyan);
+    }
+    table[0][NUM_CATEGORIES + 2].format().font_color(tabulate::Color::blue);
 
     for (std::size_t i = 1; i <= numPlayers; ++i)
     {
@@ -206,17 +224,34 @@ void Console::ShowScoreCard()
 
     for (std::size_t i = 1; i <= numPlayers; ++i)
     {
-        for (std::size_t j = 1; j <= NUM_CATEGORIES; ++j)
-        {
-            const tabulate::Color color =
-                m_game->GetPlayer(i - 1).GetScoreCard().IsFilled(
-                    static_cast<Category>(j - 1))
-                    ? tabulate::Color::red
-                    : tabulate::Color::green;
+        Player& player = m_game->GetPlayer(i - 1);
+        const ScoreCard& scoreCard = player.GetScoreCard();
+        tabulate::Color color;
 
-            table[i][j].format().font_color(color).font_align(
+        for (int j = 0; j < NUM_UPPER_CATEGORIES; ++j)
+        {
+            color = scoreCard.IsFilled(static_cast<Category>(j)) ? tabulate::Color::red
+                                                                 : tabulate::Color::green;
+
+            table[i][j + 1].format().font_color(color).font_align(
                 tabulate::FontAlign::center);
         }
+        color = scoreCard.GetUpperCategoryScore() > UPPER_SECTION_BONUS_CONDITION
+                    ? tabulate::Color::green
+                    : tabulate::Color::red;
+        table[i][NUM_UPPER_CATEGORIES + 1].format().font_color(color).font_align(
+            tabulate::FontAlign::center);
+        for (int j = NUM_UPPER_CATEGORIES; j < NUM_CATEGORIES; ++j)
+        {
+            color = scoreCard.IsFilled(static_cast<Category>(j)) ? tabulate::Color::red
+                                                                 : tabulate::Color::green;
+            table[i][j + 2].format().font_color(color).font_align(
+                tabulate::FontAlign::center);
+        }
+        table[i][NUM_CATEGORIES + 2]
+            .format()
+            .font_color(tabulate::Color::white)
+            .font_align(tabulate::FontAlign::center);
     }
 
     std::cout << table << std::endl;
@@ -231,54 +266,74 @@ void Console::ShowScoresByDice()
     tabulate::Table table;
 
     std::vector<variant<std::string, const char*, tabulate::Table>> title;
-    title.reserve(NUM_CATEGORIES + 1);
+    title.reserve(NUM_CATEGORIES + 2);
 
-    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
         const auto category = static_cast<Category>(i);
         title.emplace_back(std::string{ magic_enum::enum_name(category) });
     }
+    title.emplace_back("BONUS");
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
+    {
+        const auto category = static_cast<Category>(i);
+        title.emplace_back(std::string{ magic_enum::enum_name(category) });
+    }
+    title.emplace_back("TOTAL");
     table.add_row(title);
 
     std::vector<variant<std::string, const char*, tabulate::Table>> scores;
-    scores.reserve(1);
+    scores.reserve(NUM_CATEGORIES + 2);
 
-    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
-        const auto category = static_cast<Category>(i);
-
-        if (player.GetScoreCard().IsFilled(category))
-        {
-            scores.emplace_back(std::to_string(scoreCard.GetScore(category)));
-        }
-        else
-        {
-            scores.emplace_back(std::to_string(diceScores[i]));
-        }
+        scores.emplace_back(std::to_string(diceScores[i]));
     }
+    scores.emplace_back(std::to_string(scoreCard.GetUpperCategoryScore()) + "/" +
+                        std::to_string(UPPER_SECTION_BONUS_CONDITION));
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
+    {
+        scores.emplace_back(std::to_string(diceScores[i]));
+    }
+    scores.emplace_back(std::to_string(scoreCard.GetTotalScore()));
     table.add_row(scores);
 
-    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
-        const tabulate::Color color =
-            (i <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
-        table[0][i].format().font_color(color);
+        table[0][i].format().font_color(tabulate::Color::yellow);
     }
-
-    table[1][0]
-        .format()
-        .font_color(tabulate::Color::magenta)
-        .font_align(tabulate::FontAlign::center);
-
-    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    table[0][NUM_UPPER_CATEGORIES].format().font_color(tabulate::Color::blue);
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
     {
-        const tabulate::Color color =
-            player.GetScoreCard().IsFilled(static_cast<Category>(i))
-                ? tabulate::Color::red
-                : tabulate::Color::green;
+        table[0][i + 1].format().font_color(tabulate::Color::cyan);
+    }
+    table[0][NUM_CATEGORIES + 1].format().font_color(tabulate::Color::blue);
+
+    tabulate::Color color;
+
+    for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
+    {
+        color = scoreCard.IsFilled(static_cast<Category>(i)) ? tabulate::Color::red
+                                                             : tabulate::Color::green;
 
         table[1][i].format().font_color(color).font_align(tabulate::FontAlign::center);
     }
+    color = scoreCard.GetUpperCategoryScore() > UPPER_SECTION_BONUS_CONDITION
+                ? tabulate::Color::green
+                : tabulate::Color::red;
+    table[1][NUM_UPPER_CATEGORIES].format().font_color(color).font_align(
+        tabulate::FontAlign::center);
+    for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
+    {
+        color = scoreCard.IsFilled(static_cast<Category>(i)) ? tabulate::Color::red
+                                                             : tabulate::Color::green;
+        table[1][i + 1].format().font_color(color).font_align(
+            tabulate::FontAlign::center);
+    }
+    table[1][NUM_CATEGORIES + 1]
+        .format()
+        .font_color(tabulate::Color::white)
+        .font_align(tabulate::FontAlign::center);
 
     std::cout << table << std::endl;
 }
