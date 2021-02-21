@@ -153,6 +153,7 @@ void Player::FillScoreCard(Category category)
     const bool isFillSuccess = m_scoreCard.FillScore(category, m_scores[category]);
     if (isFillSuccess)
     {
+        m_numRoll = 0;
         processNextPlayerCallback();
     }
 }
