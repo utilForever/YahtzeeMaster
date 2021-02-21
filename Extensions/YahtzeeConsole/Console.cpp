@@ -174,7 +174,7 @@ void Console::ShowScoreCard()
     for (std::size_t i = 0; i < numPlayers; ++i)
     {
         Player& player = m_game->GetPlayer(i);
-        std::array<int, NUM_CATEGORIES> diceScores = player.GetScores();
+        const ScoreCard& scoreCard = player.GetScoreCard();
 
         std::vector<variant<std::string, const char*, tabulate::Table>> scores;
         scores.reserve(NUM_CATEGORIES + 1);
@@ -182,7 +182,8 @@ void Console::ShowScoreCard()
         scores.emplace_back(std::to_string(i + 1) + "P");
         for (std::size_t j = 0; j < NUM_CATEGORIES; ++j)
         {
-            scores.emplace_back(std::to_string(diceScores[j]));
+            scores.emplace_back(
+                std::to_string(scoreCard.GetScore(static_cast<Category>(j))));
         }
 
         table.add_row(scores);
@@ -224,6 +225,7 @@ void Console::ShowScoreCard()
 void Console::ShowScoresByDice()
 {
     Player& player = m_game->GetCurrentPlayer();
+    const ScoreCard& scoreCard = player.GetScoreCard();
     std::array<int, NUM_CATEGORIES> diceScores = player.GetScores();
 
     tabulate::Table table;
@@ -243,7 +245,16 @@ void Console::ShowScoresByDice()
 
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
-        scores.emplace_back(std::to_string(diceScores[i]));
+        const auto category = static_cast<Category>(i);
+
+        if (player.GetScoreCard().IsFilled(category))
+        {
+            scores.emplace_back(std::to_string(scoreCard.GetScore(category)));
+        }
+        else
+        {
+            scores.emplace_back(std::to_string(diceScores[i]));
+        }
     }
     table.add_row(scores);
 
@@ -262,7 +273,7 @@ void Console::ShowScoresByDice()
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
         const tabulate::Color color =
-            m_game->GetCurrentPlayer().GetScoreCard().IsFilled(static_cast<Category>(i))
+            player.GetScoreCard().IsFilled(static_cast<Category>(i))
                 ? tabulate::Color::red
                 : tabulate::Color::green;
 
