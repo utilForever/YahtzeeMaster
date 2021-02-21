@@ -46,6 +46,8 @@ int Player::GetRemainReroll() const
 
 void Player::SetDiceValues(std::vector<int> diceValues)
 {
+    std::sort(diceValues.begin(), diceValues.end());
+
     std::size_t i = 0;
 
     for (const int& diceValue : diceValues)
@@ -66,6 +68,9 @@ void Player::RollDices(std::vector<std::size_t> diceIndices)
     {
         m_dices[diceIndex].Roll();
     }
+
+    std::sort(m_dices.begin(), m_dices.end(),
+              [](const Dice& a, const Dice& b) { return a.GetValue() < b.GetValue(); });
 
     CalculateScores();
 
@@ -93,9 +98,6 @@ void Player::CalculateScores()
         m_scores[Category::FIVES] += (values[i] == 5) ? 5 : 0;
         m_scores[Category::SIXES] += (values[i] == 6) ? 6 : 0;
     }
-
-    // Sort the value of dices
-    std::sort(values.begin(), values.end(), std::less<>{});
 
     // Calculate lower section
     m_scores[Category::THREE_OF_A_KIND] =
