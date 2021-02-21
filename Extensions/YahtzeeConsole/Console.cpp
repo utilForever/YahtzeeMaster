@@ -62,7 +62,7 @@ void Console::PlayHumanTurn()
     std::vector<int> rerollVals;
     rerollVals.reserve(NUM_DICES);
 
-    for (int i = 0; i < NUM_REROLLS; ++i)
+    for (int i = 0; i < NUM_ROLLS; ++i)
     {
         player.RollDices(rerollVals);
         ShowDiceValues();

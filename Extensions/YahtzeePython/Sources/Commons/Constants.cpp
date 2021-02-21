@@ -14,7 +14,7 @@ using namespace YahtzeeMaster;
 void AddConstants(pybind11::module& m)
 {
     m.attr("NUM_DICES") = pybind11::int_(NUM_DICES);
-    m.attr("NUM_REROLLS") = pybind11::int_(NUM_REROLLS);
+    m.attr("NUM_ROLLS") = pybind11::int_(NUM_ROLLS);
     m.attr("NUM_CATEGORIES") = pybind11::int_(NUM_CATEGORIES);
     m.attr("UPPER_SECTION_BONUS_CONDITION") =
         pybind11::int_(UPPER_SECTION_BONUS_CONDITION);

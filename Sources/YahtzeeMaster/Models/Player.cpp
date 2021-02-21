@@ -41,7 +41,7 @@ std::array<int, NUM_CATEGORIES> Player::GetScores() const
 
 int Player::GetRemainReroll() const
 {
-    return NUM_REROLLS - m_numReroll;
+    return NUM_ROLLS - m_numReroll;
 }
 
 void Player::SetDiceValues(std::vector<int> diceValues)
@@ -59,7 +59,7 @@ void Player::SetDiceValues(std::vector<int> diceValues)
 
 void Player::RollDices(std::vector<int> rerollValues)
 {
-    if (m_numReroll == NUM_REROLLS)
+    if (m_numReroll == NUM_ROLLS)
     {
         return;
     }

@@ -13,7 +13,7 @@ namespace YahtzeeMaster
 constexpr int NUM_DICES = 5;
 
 //! The number of rolls.
-constexpr int NUM_REROLLS = 3;
+constexpr int NUM_ROLLS = 3;
 
 //! The number of categories.
 constexpr int NUM_CATEGORIES = 13;
