@@ -55,33 +55,15 @@ void Console::ProcessGame()
 
 void Console::PlayHumanTurn()
 {
+    ShowScoreCard();
+
     Player& player = m_game->GetCurrentPlayer();
-    player.RollDices();
 
-    ShowDiceValues();
-
-    int choice;
-    std::cout << "1. Reroll (Remain: " << player.GetRemainReroll() << ")\n";
-    std::cout << "2. Choose category\n";
-    std::cout << "3. Show score card\n";
-    std::cout << "Choice: ";
-    std::cin >> choice;
-
-    if (choice == 1)
+    for (int i = 0; i < NUM_REROLLS; ++i)
     {
+        player.RollDices();
+        ShowDiceValues();
         ProcessReroll();
-    }
-    else if (choice == 2)
-    {
-        ChooseCategory();
-    }
-    else if (choice == 3)
-    {
-        ShowScoreCard();
-    }
-    else
-    {
-        std::cout << "Invalid number! Choose again.\n";
     }
 }
 
@@ -94,11 +76,13 @@ void Console::ShowDiceValues() const
     Player& player = m_game->GetCurrentPlayer();
 
     std::cout << "Your dice values: ";
-    const std::array<int, NUM_DICES> diceVals = player.GetDiceValues();
+    std::array<int, NUM_DICES> diceVals = player.GetDiceValues();
     for (const auto& val : diceVals)
     {
         std::cout << val << " ";
     }
+
+    std::cout << "Remain reroll: " << player.GetRemainReroll() << "\n";
     std::cout << "\n";
 }
 
