@@ -64,14 +64,7 @@ void Player::RollDices(std::vector<int> rerollValues)
         return;
     }
 
-    if (rerollValues.empty())
-    {
-        for (int i = 0; i < NUM_DICES; ++i)
-        {
-            m_dices[i].Roll();
-        }
-    }
-    else
+    if (!rerollValues.empty())
     {
         std::sort(rerollValues.begin(), rerollValues.end());
 
