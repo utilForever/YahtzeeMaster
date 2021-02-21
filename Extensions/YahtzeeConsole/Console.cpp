@@ -161,21 +161,28 @@ void Console::ShowScoreCard()
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
         const auto category = static_cast<Category>(i);
-
         title.emplace_back(std::string{ magic_enum::enum_name(category) });
     }
     table.add_row(title);
 
     const std::size_t numPlayers = m_game->GetNumPlayers();
 
-    std::vector<variant<std::string, const char*, tabulate::Table>> scores;
-    scores.reserve(numPlayers + 1);
-
     for (std::size_t i = 0; i < numPlayers; ++i)
     {
+        Player& player = m_game->GetPlayer(i);
+        std::array<int, NUM_CATEGORIES> diceScores = player.GetScores();
+
+        std::vector<variant<std::string, const char*, tabulate::Table>> scores;
+        scores.reserve(NUM_CATEGORIES + 1);
+
         scores.emplace_back(std::to_string(i + 1) + "P");
+        for (std::size_t j = 0; j < NUM_CATEGORIES; ++j)
+        {
+            scores.emplace_back(std::to_string(diceScores[j]));
+        }
+
+        table.add_row(scores);
     }
-    table.add_row(scores);
 
     for (std::size_t i = 1; i <= NUM_CATEGORIES; ++i)
     {
@@ -200,7 +207,7 @@ void Console::ShowScoreCard()
                 m_game->GetPlayer(i - 1).GetScoreCard().IsFilled(
                     static_cast<Category>(j - 1))
                     ? tabulate::Color::red
-                    : tabulate::Color::none;
+                    : tabulate::Color::green;
 
             table[i][j].format().font_color(color).font_align(
                 tabulate::FontAlign::center);
@@ -223,7 +230,6 @@ void Console::ShowScoresByDice()
     for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
     {
         const auto category = static_cast<Category>(i);
-
         title.emplace_back(std::string{ magic_enum::enum_name(category) });
     }
     table.add_row(title);
