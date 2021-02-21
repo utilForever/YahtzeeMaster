@@ -90,9 +90,8 @@ void Console::ShowDiceValues() const
     {
         std::cout << val << " ";
     }
-
+    std::cout << '\n';
     std::cout << "Remain reroll: " << player.GetRemainReroll() << "\n";
-    std::cout << "\n";
 }
 
 std::vector<int> Console::ProcessReroll()
@@ -105,13 +104,16 @@ std::vector<int> Console::ProcessReroll()
     std::vector<int> rerollVals;
     rerollVals.reserve(numDicesReroll);
 
-    std::cout << "Select dice values to reroll: ";
-    for (int i = 0; i < numDicesReroll; ++i)
+    if (numDicesReroll > 0)
     {
-        int val;
-        std::cin >> val;
+        std::cout << "Select dice values to reroll: ";
+        for (int i = 0; i < numDicesReroll; ++i)
+        {
+            int val;
+            std::cin >> val;
 
-        rerollVals.emplace_back(val);
+            rerollVals.emplace_back(val);
+        }
     }
 
     return rerollVals;
