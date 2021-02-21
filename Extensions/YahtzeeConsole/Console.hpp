@@ -42,7 +42,7 @@ class Console
     void ShowScoreCard();
 
     //! Processes a reroll.
-    void ProcessReroll();
+    std::vector<int> ProcessReroll();
 
     //! Chooses a category to record on the score card.
     void ChooseCategory();

@@ -59,11 +59,14 @@ void Console::PlayHumanTurn()
 
     Player& player = m_game->GetCurrentPlayer();
 
+    std::vector<int> rerollVals;
+    rerollVals.reserve(NUM_DICES);
+
     for (int i = 0; i < NUM_REROLLS; ++i)
     {
-        player.RollDices();
+        player.RollDices(rerollVals);
         ShowDiceValues();
-        ProcessReroll();
+        rerollVals = ProcessReroll();
     }
 }
 
@@ -86,8 +89,26 @@ void Console::ShowDiceValues() const
     std::cout << "\n";
 }
 
-void Console::ProcessReroll()
+std::vector<int> Console::ProcessReroll()
 {
+    int numDicesReroll;
+
+    std::cout << "How many dice are you going to reroll? ";
+    std::cin >> numDicesReroll;
+
+    std::vector<int> rerollVals;
+    rerollVals.reserve(numDicesReroll);
+
+    std::cout << "Select dice values to reroll: ";
+    for (int i = 0; i < numDicesReroll; ++i)
+    {
+        int val;
+        std::cin >> val;
+
+        rerollVals.emplace_back(val);
+    }
+
+    return rerollVals;
 }
 
 void Console::ChooseCategory()
