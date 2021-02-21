@@ -15,7 +15,7 @@ TEST_CASE("[Player] - RollDices")
 {
     Player player;
 
-    player.RollDices();
+    player.RollDices(true);
 
     std::array<int, NUM_DICES> values = player.GetDiceValues();
     for (auto& value : values)

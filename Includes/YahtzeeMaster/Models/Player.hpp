@@ -49,8 +49,9 @@ class Player
     void SetDiceValues(std::vector<int> diceValues);
 
     //! Rolls a list of dices.
+    //! \param isFirst A flag to indicate it is first roll.
     //! \param rerollValues A list of dice values to roll.
-    void RollDices(std::vector<int> rerollValues = {});
+    void RollDices(bool isFirst = false, std::vector<int> rerollValues = {});
 
     //! Calculates a list of scores according to the value of dices.
     void CalculateScores();

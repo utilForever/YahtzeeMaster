@@ -37,8 +37,9 @@ void AddPlayer(pybind11::module& m)
 
             Parameters
             ----------
-            - dice_indices : A list of indices of dice to roll.)pbdoc",
-             pybind11::arg("dice_indices"))
+            - is_first: A flag to indicate it is first roll.
+            - reroll_values : A list of dice values to roll.)pbdoc",
+             pybind11::arg("is_first"), pybind11::arg("reroll_values"))
         .def("calculate_scores", &Player::CalculateScores,
              R"pbdoc(Calculates a list of scores according to the value of dices.)pbdoc")
         .def("fill_score_card", &Player::FillScoreCard, R"pbdoc(

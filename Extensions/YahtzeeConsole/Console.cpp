@@ -64,7 +64,7 @@ void Console::PlayHumanTurn()
 
     for (int i = 0; i < NUM_ROLLS; ++i)
     {
-        player.RollDices(rerollVals);
+        player.RollDices(i == 0 ? true : false, rerollVals);
         ShowDiceValues();
 
         if (i < NUM_ROLLS - 1)

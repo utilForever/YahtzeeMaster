@@ -57,45 +57,55 @@ void Player::SetDiceValues(std::vector<int> diceValues)
     }
 }
 
-void Player::RollDices(std::vector<int> rerollValues)
+void Player::RollDices(bool isFirst, std::vector<int> rerollValues)
 {
     if (m_numRoll == NUM_ROLLS)
     {
         return;
     }
 
-    if (!rerollValues.empty())
+    if (isFirst)
     {
-        std::sort(rerollValues.begin(), rerollValues.end());
-
-        std::size_t i = 0, j = 0;
-        std::vector<std::size_t> indices;
-        indices.reserve(rerollValues.size());
-
-        while (i < rerollValues.size() && j < m_dices.size())
+        for (auto& dice : m_dices)
         {
-            const int diff = rerollValues.at(i) - m_dices.at(j).GetValue();
-
-            if (diff == 0)
-            {
-                indices.emplace_back(j);
-
-                ++i;
-                ++j;
-            }
-            else if (diff > 0)
-            {
-                ++i;
-            }
-            else
-            {
-                ++j;
-            }
+            dice.Roll();
         }
-
-        for (auto& index : indices)
+    }
+    else
+    {
+        if (!rerollValues.empty())
         {
-            m_dices[index].Roll();
+            std::sort(rerollValues.begin(), rerollValues.end());
+
+            std::size_t i = 0, j = 0;
+            std::vector<std::size_t> indices;
+            indices.reserve(rerollValues.size());
+
+            while (i < rerollValues.size() && j < m_dices.size())
+            {
+                const int diff = rerollValues.at(i) - m_dices.at(j).GetValue();
+
+                if (diff == 0)
+                {
+                    indices.emplace_back(j);
+
+                    ++i;
+                    ++j;
+                }
+                else if (diff > 0)
+                {
+                    ++i;
+                }
+                else
+                {
+                    ++j;
+                }
+            }
+
+            for (auto& index : indices)
+            {
+                m_dices[index].Roll();
+            }
         }
     }
 
