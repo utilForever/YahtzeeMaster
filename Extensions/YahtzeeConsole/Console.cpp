@@ -58,6 +58,8 @@ void Console::PlayHumanTurn()
     ShowScoreCard();
 
     Player& player = m_game->GetCurrentPlayer();
+    std::cout << "Round " << m_game->GetGameState().curRound << '\n';
+    std::cout << m_game->GetGameState().curPlayerIdx + 1 << "P's turn\n";
 
     std::vector<int> rerollVals;
     rerollVals.reserve(NUM_DICES);
