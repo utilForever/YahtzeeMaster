@@ -119,6 +119,7 @@ std::vector<int> Console::ProcessReroll()
 
 void Console::ChooseCategory()
 {
+    ShowScoresByDice();
 }
 
 void Console::ShowScoreCard()
@@ -168,14 +169,66 @@ void Console::ShowScoreCard()
         for (std::size_t j = 1; j <= NUM_CATEGORIES; ++j)
         {
             const tabulate::Color color =
-                m_game->GetPlayer(j - 1).GetScoreCard().IsFilled(
-                    static_cast<Category>(i - 1))
-                    ? tabulate::Color::green
+                m_game->GetPlayer(i - 1).GetScoreCard().IsFilled(
+                    static_cast<Category>(j - 1))
+                    ? tabulate::Color::red
                     : tabulate::Color::none;
 
             table[i][j].format().font_color(color).font_align(
                 tabulate::FontAlign::center);
         }
+    }
+
+    std::cout << table << std::endl;
+}
+
+void Console::ShowScoresByDice()
+{
+    Player& player = m_game->GetCurrentPlayer();
+    std::array<int, NUM_CATEGORIES> diceScores = player.GetScores();
+
+    tabulate::Table table;
+
+    std::vector<variant<std::string, const char*, tabulate::Table>> title;
+    title.reserve(NUM_CATEGORIES + 1);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        const auto category = static_cast<Category>(i);
+
+        title.emplace_back(std::string{ magic_enum::enum_name(category) });
+    }
+    table.add_row(title);
+
+    std::vector<variant<std::string, const char*, tabulate::Table>> scores;
+    scores.reserve(1);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        scores.emplace_back(std::to_string(diceScores[i]));
+    }
+    table.add_row(scores);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        const tabulate::Color color =
+            (i <= Category::SIXES) ? tabulate::Color::yellow : tabulate::Color::cyan;
+        table[0][i].format().font_color(color);
+    }
+
+    table[1][0]
+        .format()
+        .font_color(tabulate::Color::magenta)
+        .font_align(tabulate::FontAlign::center);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        const tabulate::Color color =
+            m_game->GetCurrentPlayer().GetScoreCard().IsFilled(static_cast<Category>(i))
+                ? tabulate::Color::red
+                : tabulate::Color::green;
+
+        table[1][i].format().font_color(color).font_align(tabulate::FontAlign::center);
     }
 
     std::cout << table << std::endl;

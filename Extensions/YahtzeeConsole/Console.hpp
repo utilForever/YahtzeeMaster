@@ -38,8 +38,8 @@ class Console
     //! Plays a turn for computer.
     void PlayComputerTurn();
 
-    //! Shows a score card.
-    void ShowScoreCard();
+    // Shows a list of dice values.
+    void ShowDiceValues() const;
 
     //! Processes a reroll.
     std::vector<int> ProcessReroll();
@@ -47,8 +47,11 @@ class Console
     //! Chooses a category to record on the score card.
     void ChooseCategory();
 
-    // Shows a list of dice values.
-    void ShowDiceValues() const;
+    //! Shows a score card.
+    void ShowScoreCard();
+
+    //! Shows a list of scores by dice.
+    void ShowScoresByDice();
 
     std::unique_ptr<Game> m_game;
 
