@@ -25,6 +25,14 @@ void AddScoreCard(pybind11::module& m)
             - category : The category to fill a score.
             - score : The value of score.)pbdoc",
              pybind11::arg("category"), pybind11::arg("score"))
+        .def("get_score", &ScoreCard::GetScore, R"pbdoc(Returns the score of category.
+
+            Parameters
+            ----------
+            - category : The category to get score.)pbdoc",
+             pybind11::arg("category"))
+        .def("get_upper_category_score", &ScoreCard::GetUpperCategoryScore,
+             R"pbdoc(Returns the score of upper categories.)pbdoc")
         .def("get_total_score", &ScoreCard::GetTotalScore,
              R"pbdoc(Returns the total score.)pbdoc")
         .def_static(
