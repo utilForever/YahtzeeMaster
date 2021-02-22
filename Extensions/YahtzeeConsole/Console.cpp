@@ -51,6 +51,8 @@ void Console::ProcessGame()
                 break;
         }
     }
+
+    ShowResult();
 }
 
 void Console::PlayHumanTurn()
@@ -336,5 +338,21 @@ void Console::ShowScoresByDice()
         .font_align(tabulate::FontAlign::center);
 
     std::cout << table << std::endl;
+}
+
+void Console::ShowResult()
+{
+    ShowScoreCard();
+
+    const std::size_t numPlayers = m_game->GetNumPlayers();
+
+    for (std::size_t i = 0; i < numPlayers; ++i)
+    {
+        if (m_game->GetPlayer(i).result == Result::WON)
+        {
+            std::cout << "Player " << (i + 1) << " Won!\n";
+            break;
+        }
+    }
 }
 }  // namespace YahtzeeMaster

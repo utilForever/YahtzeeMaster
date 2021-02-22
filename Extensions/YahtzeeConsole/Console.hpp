@@ -53,6 +53,9 @@ class Console
     //! Shows a list of scores by dice.
     void ShowScoresByDice();
 
+    //! Shows result.
+    void ShowResult();
+
     std::unique_ptr<Game> m_game;
 
     Mode m_mode;
