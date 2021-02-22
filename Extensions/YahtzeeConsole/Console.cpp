@@ -55,7 +55,7 @@ void Console::ProcessGame()
     ShowResult();
 }
 
-void Console::PlayHumanTurn()
+void Console::PlayHumanTurn() const
 {
     ShowScoreCard();
 
@@ -82,6 +82,7 @@ void Console::PlayHumanTurn()
 
 void Console::PlayComputerTurn()
 {
+    // TBD
 }
 
 void Console::ShowDiceValues() const
@@ -123,7 +124,7 @@ std::vector<int> Console::ProcessReroll()
     return rerollVals;
 }
 
-void Console::ChooseCategory()
+void Console::ChooseCategory() const
 {
     ShowScoresByDice();
 
@@ -156,7 +157,7 @@ void Console::ChooseCategory()
     }
 }
 
-void Console::ShowScoreCard()
+void Console::ShowScoreCard() const
 {
     tabulate::Table table;
 
@@ -259,7 +260,7 @@ void Console::ShowScoreCard()
     std::cout << table << std::endl;
 }
 
-void Console::ShowScoresByDice()
+void Console::ShowScoresByDice() const
 {
     Player& player = m_game->GetCurrentPlayer();
     const ScoreCard& scoreCard = player.GetScoreCard();
@@ -358,7 +359,7 @@ void Console::ShowScoresByDice()
     std::cout << table << std::endl;
 }
 
-void Console::ShowResult()
+void Console::ShowResult() const
 {
     ShowScoreCard();
 

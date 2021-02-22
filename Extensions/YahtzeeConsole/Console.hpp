@@ -33,7 +33,7 @@ class Console
 
  private:
     //! Plays a turn for human.
-    void PlayHumanTurn();
+    void PlayHumanTurn() const;
 
     //! Plays a turn for computer.
     void PlayComputerTurn();
@@ -42,19 +42,19 @@ class Console
     void ShowDiceValues() const;
 
     //! Processes a reroll.
-    std::vector<int> ProcessReroll();
+    static std::vector<int> ProcessReroll();
 
     //! Chooses a category to record on the score card.
-    void ChooseCategory();
+    void ChooseCategory() const;
 
     //! Shows a score card.
-    void ShowScoreCard();
+    void ShowScoreCard() const;
 
     //! Shows a list of scores by dice.
-    void ShowScoresByDice();
+    void ShowScoresByDice() const;
 
     //! Shows result.
-    void ShowResult();
+    void ShowResult() const;
 
     std::unique_ptr<Game> m_game;
 
