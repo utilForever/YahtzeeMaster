@@ -26,7 +26,7 @@ class Console
 
     //! Constructs a Console instance with \p mode.
     //! \param mode The game mode such as single and versus.
-    Console(Mode mode);
+    explicit Console(Mode mode);
 
     //! Process a Yahtzee game.
     void ProcessGame();
