@@ -35,9 +35,18 @@ class Game
     //! \return The game state.
     [[nodiscard]] GameState& GetGameState();
 
+    //! Returns the number of players.
+    //! \return The number of players.
+    [[nodiscard]] std::size_t GetNumPlayers() const;
+
     //! Returns the current player.
     //! \return The current player.
     [[nodiscard]] Player& GetCurrentPlayer();
+
+    //! Returns the player at \p idx.
+    //! \param idx The index of player array.
+    //! \return The player at \p idx.
+    [[nodiscard]] Player& GetPlayer(std::size_t idx);
 
     //! Starts the game.
     void Start();

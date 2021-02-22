@@ -13,10 +13,13 @@ namespace YahtzeeMaster
 constexpr int NUM_DICES = 5;
 
 //! The number of rolls.
-constexpr int NUM_REROLLS = 3;
+constexpr int NUM_ROLLS = 3;
 
 //! The number of categories.
 constexpr int NUM_CATEGORIES = 13;
+
+//! The number of upper categories.
+constexpr int NUM_UPPER_CATEGORIES = 6;
 
 //! The value of the upper section to gain the bonus score.
 constexpr int UPPER_SECTION_BONUS_CONDITION = 63;

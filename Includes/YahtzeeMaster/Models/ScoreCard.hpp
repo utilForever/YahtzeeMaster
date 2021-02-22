@@ -40,9 +40,23 @@ class ScoreCard
     //! \return true if a score is filled successfully, false otherwise.
     bool FillScore(Category category, int score);
 
+    //! Returns the score of \p category.
+    //! \param category The category to get score.
+    //! \return The score of \p category.
+    [[nodiscard]] int GetScore(Category category) const;
+
+    //! Returns the score of upper categories.
+    //! \return The score of upper categories.
+    [[nodiscard]] int GetUpperCategoryScore() const;
+
     //! Returns the total score.
     //! \return The total score.
     [[nodiscard]] int GetTotalScore() const;
+
+    //! Checks the value of \p category is filled.
+    //! \param category The category to check that it is filled.
+    //! \return true if the value of \p category is filled, false otherwise.
+    [[nodiscard]] bool IsFilled(Category category) const;
 
     //! Checks that a list of dices satisfies "Three Of A Kind" condition.
     //! \param diceValues A list of values of the dice.

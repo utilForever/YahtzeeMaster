@@ -30,16 +30,30 @@ bool ScoreCard::FillScore(Category category, int score)
     return true;
 }
 
+int ScoreCard::GetScore(Category category) const
+{
+    return m_scores[category];
+}
+
+int ScoreCard::GetUpperCategoryScore() const
+{
+    return m_scores[Category::ACES] + m_scores[Category::TWOS] +
+           m_scores[Category::THREES] + m_scores[Category::FOURS] +
+           m_scores[Category::FIVES] + m_scores[Category::SIXES];
+}
+
 int ScoreCard::GetTotalScore() const
 {
-    const int bonus = (m_scores[Category::ACES] + m_scores[Category::TWOS] +
-                       m_scores[Category::THREES] + m_scores[Category::FOURS] +
-                       m_scores[Category::FIVES] + m_scores[Category::SIXES]) >=
-                              UPPER_SECTION_BONUS_CONDITION
+    const int bonus = (GetUpperCategoryScore()) >= UPPER_SECTION_BONUS_CONDITION
                           ? UPPER_SECTION_BONUS
                           : 0;
 
     return std::accumulate(m_scores.begin(), m_scores.end(), 0) + bonus;
+}
+
+bool ScoreCard::IsFilled(Category category) const
+{
+    return m_scoreMarks[category];
 }
 
 bool ScoreCard::IsThreeOfAKind(const std::array<int, NUM_DICES>& diceValues)

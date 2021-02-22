@@ -12,7 +12,7 @@ import pyYahtzee
 def test_player_roll_dices():
     player = pyYahtzee.Player()
 
-    player.roll_dices([0, 1, 2, 3, 4])
+    player.roll_dices(True)
 
     values = player.get_dice_values()
     for value in values:

@@ -30,6 +30,19 @@ TEST_CASE("[ScoreCard] - FillScore")
     CHECK_EQ(game.GetGameState().curRound, 2);
 }
 
+TEST_CASE("[ScoreCard] - GetScore")
+{
+    ScoreCard scoreCard;
+
+    scoreCard.FillScore(Category::TWOS, 10);
+    scoreCard.FillScore(Category::FOUR_OF_A_KIND, 21);
+
+    CHECK_EQ(scoreCard.GetScore(Category::ACES), 0);
+    CHECK_EQ(scoreCard.GetScore(Category::TWOS), 10);
+    CHECK_EQ(scoreCard.GetScore(Category::THREE_OF_A_KIND), 0);
+    CHECK_EQ(scoreCard.GetScore(Category::FOUR_OF_A_KIND), 21);
+}
+
 TEST_CASE("[ScoreCard] - GetTotalScore")
 {
     ScoreCard scoreCard;
@@ -43,6 +56,31 @@ TEST_CASE("[ScoreCard] - GetTotalScore")
 
     scoreCard.FillScore(Category::SIXES, 18);
     CHECK_EQ(scoreCard.GetTotalScore(), 98);
+}
+
+TEST_CASE("[ScoreCard] - IsFilled")
+{
+    ScoreCard scoreCard;
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        CHECK_FALSE(scoreCard.IsFilled(static_cast<Category>(i)));
+    }
+
+    scoreCard.FillScore(Category::ACES, 4);
+    scoreCard.FillScore(Category::FULL_HOUSE, 26);
+
+    for (std::size_t i = 0; i < NUM_CATEGORIES; ++i)
+    {
+        if (i == 0 || i == 8)
+        {
+            CHECK(scoreCard.IsFilled(static_cast<Category>(i)));
+        }
+        else
+        {
+            CHECK_FALSE(scoreCard.IsFilled(static_cast<Category>(i)));
+        }
+    }
 }
 
 TEST_CASE("[ScoreCard] - ThreeOfAKind")

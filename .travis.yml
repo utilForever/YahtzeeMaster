@@ -30,13 +30,6 @@ matrix:
           else
             sh Scripts/travis_build_codecov_sonar.sh
           fi
-    - name: Test Docker based on Ubuntu 18.04 LTS + gcc
-      os: linux
-      dist: trusty
-      sudo: required
-      services: docker
-      script:
-        - sh Scripts/travis_build_docker.sh
     - name: Test Docker based on Ubuntu 20.04 LTS + gcc
       os: linux
       dist: trusty

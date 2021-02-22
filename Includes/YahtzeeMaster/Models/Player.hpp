@@ -40,13 +40,18 @@ class Player
     //! \return A list of scores according to the value of dices.
     [[nodiscard]] std::array<int, NUM_CATEGORIES> GetScores() const;
 
-    //! Sets a list of values of the dice (for testing purposes).
-    //! \param diceValues A list of values of the dice to set.
+    //! Returns the number of remain reroll.
+    //! \return The number of remain reroll.
+    [[nodiscard]] int GetRemainReroll() const;
+
+    //! Sets a list of dice values (for testing purposes).
+    //! \param diceValues A list of dice values to set.
     void SetDiceValues(std::vector<int> diceValues);
 
     //! Rolls a list of dices.
-    //! \param diceIndices A list of indices of dice to roll.
-    void RollDices(std::vector<std::size_t> diceIndices = { 0, 1, 2, 3, 4 });
+    //! \param isFirst A flag to indicate it is first roll.
+    //! \param rerollValues A list of dice values to roll.
+    void RollDices(bool isFirst = false, std::vector<int> rerollValues = {});
 
     //! Calculates a list of scores according to the value of dices.
     void CalculateScores();
@@ -65,7 +70,7 @@ class Player
     std::array<Dice, NUM_DICES> m_dices;
     std::array<int, NUM_CATEGORIES> m_scores{};
 
-    int m_numReroll = 0;
+    int m_numRoll = 0;
 };
 }  // namespace YahtzeeMaster
 

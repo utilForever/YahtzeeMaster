@@ -18,6 +18,16 @@ namespace YahtzeeMaster
 //!
 struct GameConfig
 {
+    //! Default constructor.
+    GameConfig() = default;
+
+    //! Constructs a game config with given \p _numPlayers.
+    //! \param _numPlayers The number of players.
+    explicit GameConfig(std::size_t _numPlayers) : numPlayers(_numPlayers)
+    {
+        // Do nothing
+    }
+
     std::size_t numPlayers = 0;
 };
 }  // namespace YahtzeeMaster

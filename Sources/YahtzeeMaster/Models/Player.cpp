@@ -14,7 +14,7 @@ namespace YahtzeeMaster
 void Player::Initialize()
 {
     m_scores.fill(0);
-    m_numReroll = 0;
+    m_numRoll = 0;
 }
 
 const ScoreCard& Player::GetScoreCard() const
@@ -39,8 +39,15 @@ std::array<int, NUM_CATEGORIES> Player::GetScores() const
     return m_scores;
 }
 
+int Player::GetRemainReroll() const
+{
+    return NUM_ROLLS - m_numRoll;
+}
+
 void Player::SetDiceValues(std::vector<int> diceValues)
 {
+    std::sort(diceValues.begin(), diceValues.end());
+
     std::size_t i = 0;
 
     for (const int& diceValue : diceValues)
@@ -50,21 +57,64 @@ void Player::SetDiceValues(std::vector<int> diceValues)
     }
 }
 
-void Player::RollDices(std::vector<std::size_t> diceIndices)
+void Player::RollDices(bool isFirst, std::vector<int> rerollValues)
 {
-    if (m_numReroll == NUM_REROLLS)
+    if (m_numRoll == NUM_ROLLS)
     {
         return;
     }
 
-    for (const std::size_t& diceIndex : diceIndices)
+    if (isFirst)
     {
-        m_dices[diceIndex].Roll();
+        for (auto& dice : m_dices)
+        {
+            dice.Roll();
+        }
     }
+    else
+    {
+        if (!rerollValues.empty())
+        {
+            std::sort(rerollValues.begin(), rerollValues.end());
+
+            std::size_t i = 0, j = 0;
+            std::vector<std::size_t> indices;
+            indices.reserve(rerollValues.size());
+
+            while (i < rerollValues.size() && j < m_dices.size())
+            {
+                const int diff = rerollValues.at(i) - m_dices.at(j).GetValue();
+
+                if (diff == 0)
+                {
+                    indices.emplace_back(j);
+
+                    ++i;
+                    ++j;
+                }
+                else if (diff > 0)
+                {
+                    ++j;
+                }
+                else
+                {
+                    ++i;
+                }
+            }
+
+            for (auto& index : indices)
+            {
+                m_dices[index].Roll();
+            }
+        }
+    }
+
+    std::sort(m_dices.begin(), m_dices.end(),
+              [](const Dice& a, const Dice& b) { return a.GetValue() < b.GetValue(); });
 
     CalculateScores();
 
-    ++m_numReroll;
+    ++m_numRoll;
 }
 
 void Player::CalculateScores()
@@ -89,9 +139,6 @@ void Player::CalculateScores()
         m_scores[Category::SIXES] += (values[i] == 6) ? 6 : 0;
     }
 
-    // Sort the value of dices
-    std::sort(values.begin(), values.end(), std::less<>{});
-
     // Calculate lower section
     m_scores[Category::THREE_OF_A_KIND] =
         ScoreCard::IsThreeOfAKind(values) ? sumOfAllDice : 0;
@@ -109,6 +156,7 @@ void Player::FillScoreCard(Category category)
     const bool isFillSuccess = m_scoreCard.FillScore(category, m_scores[category]);
     if (isFillSuccess)
     {
+        m_numRoll = 0;
         processNextPlayerCallback();
     }
 }
