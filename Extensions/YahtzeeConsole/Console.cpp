@@ -22,11 +22,11 @@ void Console::ProcessGame()
 {
     if (m_mode == Mode::SINGLE_HUMAN || m_mode == Mode::SINGLE_COMPUTER)
     {
-        m_game = std::make_unique<Game>(1);
+        m_game = std::make_unique<Game>(GameConfig{ 1 });
     }
     else
     {
-        m_game = std::make_unique<Game>(2);
+        m_game = std::make_unique<Game>(GameConfig{ 2 });
     }
 
     m_game->Start();

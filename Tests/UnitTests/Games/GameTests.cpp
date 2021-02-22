@@ -24,7 +24,7 @@ TEST_CASE("[Game] - GetGameState")
 
 TEST_CASE("[Game] - GetNumPlayers")
 {
-    Game game{ 2 };
+    Game game{ GameConfig{ 2 } };
     game.Start();
 
     CHECK_EQ(game.GetNumPlayers(), 2);
