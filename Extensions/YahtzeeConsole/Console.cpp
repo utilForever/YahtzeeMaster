@@ -289,13 +289,31 @@ void Console::ShowScoresByDice()
 
     for (int i = 0; i < NUM_UPPER_CATEGORIES; ++i)
     {
-        scores.emplace_back(std::to_string(diceScores[i]));
+        const auto category = static_cast<Category>(i);
+
+        if (scoreCard.IsFilled(category))
+        {
+            scores.emplace_back(std::to_string(scoreCard.GetScore(category)));
+        }
+        else
+        {
+            scores.emplace_back(std::to_string(diceScores[i]));
+        }
     }
     scores.emplace_back(std::to_string(scoreCard.GetUpperCategoryScore()) + "/" +
                         std::to_string(UPPER_SECTION_BONUS_CONDITION));
     for (int i = NUM_UPPER_CATEGORIES; i < NUM_CATEGORIES; ++i)
     {
-        scores.emplace_back(std::to_string(diceScores[i]));
+        const auto category = static_cast<Category>(i);
+
+        if (scoreCard.IsFilled(category))
+        {
+            scores.emplace_back(std::to_string(scoreCard.GetScore(category)));
+        }
+        else
+        {
+            scores.emplace_back(std::to_string(diceScores[i]));
+        }
     }
     scores.emplace_back(std::to_string(scoreCard.GetTotalScore()));
     table.add_row(scores);
