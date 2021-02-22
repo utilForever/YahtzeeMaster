@@ -20,11 +20,11 @@ def test_score_card_fill_score():
 
     cur_player = game.get_current_player()
 
-    cur_player.roll_dices([0, 1, 2, 3, 4])
+    cur_player.roll_dices(True)
     cur_player.fill_score_card(pyYahtzee.Category.ACES)
     assert game.get_game_state().cur_round == 2
 
-    cur_player.roll_dices([0, 1, 2, 3, 4])
+    cur_player.roll_dices(True)
     cur_player.fill_score_card(pyYahtzee.Category.ACES)
     assert game.get_game_state().cur_round == 2
 
